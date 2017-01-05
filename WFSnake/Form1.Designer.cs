@@ -43,7 +43,7 @@
             this.pbCanvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbCanvas.Location = new System.Drawing.Point(13, 13);
             this.pbCanvas.Name = "pbCanvas";
-            this.pbCanvas.Size = new System.Drawing.Size(740, 740);
+            this.pbCanvas.Size = new System.Drawing.Size(720, 720);
             this.pbCanvas.TabIndex = 0;
             this.pbCanvas.TabStop = false;
             this.pbCanvas.Click += new System.EventHandler(this.pbCanvas_Click);

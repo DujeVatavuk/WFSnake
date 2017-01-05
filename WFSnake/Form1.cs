@@ -92,19 +92,24 @@ namespace WFSnake
                 for (int i = 0; i < Snake.Count; i++)
                 {
                     if (i == 0)
-                        snakeColour = Brushes.Black;
-                    else
-                        snakeColour = Brushes.Turquoise;
+                    {
+                        snakeColour = Brushes.DimGray;
 
-                    /*canvas.FillEllipse(snakeColour,
+                        canvas.FillRectangle(snakeColour,
                         new Rectangle(Snake[i].X * Settings.Width,
                                       Snake[i].Y * Settings.Height,
-                                      Settings.Width, Settings.Height));*/
+                                      Settings.Width, Settings.Height));
+                    }
+                    else
+                    { 
+                        snakeColour = Brushes.Turquoise;
 
-                    canvas.FillRectangle(snakeColour,
+                        canvas.FillRectangle(snakeColour,
                          new Rectangle(Snake[i].X * Settings.Width,
                                        Snake[i].Y * Settings.Height,
-                                       Settings.Width, Settings.Height));
+                                       Settings.Width - 1, Settings.Height - 1));
+                    }
+
 
                     canvas.FillRectangle(Brushes.DeepPink,
                         new Rectangle(food.X * Settings.Width,
@@ -145,7 +150,10 @@ namespace WFSnake
                     int maxYPos = pbCanvas.Size.Height / Settings.Height;
 
                     // Granice
-                    
+                    /*if (Snake[i].X < 0 || Snake[i].Y < 0 || Snake[i].X > maxXPos || Snake[i].Y > maxYPos)
+                    {
+                        Die();
+                    }*/ 
                     if (Snake[i].X < 0)
                     {
                         Snake[i].X = maxXPos;
