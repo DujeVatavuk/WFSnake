@@ -162,11 +162,11 @@ namespace WFSnake
                     {
                         Snake[i].Y = maxYPos;
                     }
-                    else if (Snake[i].X > maxXPos)
+                    else if (Snake[i].X >= maxXPos)
                     {
                         Snake[i].X = 0;
                     }
-                    else if (Snake[i].Y > maxYPos)
+                    else if (Snake[i].Y >= maxYPos)
                     {
                         Snake[i].Y = 0;
                     }
