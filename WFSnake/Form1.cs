@@ -96,12 +96,17 @@ namespace WFSnake
                     else
                         snakeColour = Brushes.Turquoise;
 
-                    canvas.FillEllipse(snakeColour,
+                    /*canvas.FillEllipse(snakeColour,
                         new Rectangle(Snake[i].X * Settings.Width,
                                       Snake[i].Y * Settings.Height,
-                                      Settings.Width, Settings.Height));
+                                      Settings.Width, Settings.Height));*/
 
-                    canvas.FillEllipse(Brushes.DeepPink,
+                    canvas.FillRectangle(snakeColour,
+                         new Rectangle(Snake[i].X * Settings.Width,
+                                       Snake[i].Y * Settings.Height,
+                                       Settings.Width, Settings.Height));
+
+                    canvas.FillRectangle(Brushes.DeepPink,
                         new Rectangle(food.X * Settings.Width,
                         food.Y * Settings.Height, Settings.Width, Settings.Height));
                 }
@@ -140,13 +145,26 @@ namespace WFSnake
                     int maxYPos = pbCanvas.Size.Height / Settings.Height;
 
                     // Granice
-                    if (Snake[i].X < 0 || Snake[i].Y < 0 || Snake[i].X > maxXPos || Snake[i].Y > maxYPos)
+                    
+                    if (Snake[i].X < 0)
                     {
-                        Die();
+                        Snake[i].X = maxXPos;
+                    }
+                    else if (Snake[i].Y < 0)
+                    {
+                        Snake[i].Y = maxYPos;
+                    }
+                    else if (Snake[i].X > maxXPos)
+                    {
+                        Snake[i].X = 0;
+                    }
+                    else if (Snake[i].Y > maxYPos)
+                    {
+                        Snake[i].Y = 0;
                     }
 
                     // Sama sa sobom
-                    for(int j=1; j<Snake.Count; j++)
+                    for (int j=1; j<Snake.Count; j++)
                     {
                         if(Snake[i].X == Snake[j].X && Snake[i].Y == Snake[j].Y)
                         {
@@ -199,6 +217,11 @@ namespace WFSnake
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbCanvas_Click(object sender, EventArgs e)
         {
 
         }
