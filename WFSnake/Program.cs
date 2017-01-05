@@ -10,6 +10,7 @@ namespace WFSnake
     {
         /// <summary>
         /// The main entry point for the application.
+        /// Verzija 2
         /// </summary>
         [STAThread]
         static void Main()
