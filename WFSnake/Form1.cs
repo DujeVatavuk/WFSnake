@@ -45,14 +45,44 @@ namespace WFSnake
 
         private void GenerateFood()
         {
+            int a = 0;
+            int b = 0;
+            int i = 0;
+            bool T;
             int maxXPos = pbCanvas.Size.Width / Settings.Width;
             int maxYPos = pbCanvas.Size.Height / Settings.Height;
 
             Random random = new Random();
             food = new Circle();
+            /*A:
+            a = random.Next(0, maxXPos);
+            b = random.Next(0, maxYPos);
 
-            food.X = random.Next(0, maxXPos);
-            food.Y = random.Next(0, maxYPos);
+            for (i = 0; i < Snake.Count; i++) 
+            {
+                if(a == Snake[i].X && b == Snake[i].Y)
+                {
+                    goto A;
+                }
+            }*/
+            do
+            {
+                T = false;
+                a = random.Next(0, maxXPos);
+                b = random.Next(0, maxYPos);
+
+                for (i = 0; i < Snake.Count; i++)
+                {
+                    if (a == Snake[i].X && b == Snake[i].Y)
+                    {
+                        T = true;
+                        break;
+                    }
+                }
+            } while (T);
+           
+            food.X = a;
+            food.Y = b;
         }
 
         private void UpdateScreen(object sender, EventArgs e)
