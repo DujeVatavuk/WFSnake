@@ -38,9 +38,6 @@
             this.SnkDown = new System.Windows.Forms.Button();
             this.SnkLeft = new System.Windows.Forms.Button();
             this.SnkRight = new System.Windows.Forms.Button();
-            this.RBTipkovnica = new System.Windows.Forms.RadioButton();
-            this.RBBotuni = new System.Windows.Forms.RadioButton();
-            this.BtnUnos = new System.Windows.Forms.Button();
             this.TBSpeed = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TBSpeed)).BeginInit();
@@ -90,6 +87,7 @@
             // 
             // SnkUp
             // 
+            this.SnkUp.Enabled = false;
             this.SnkUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SnkUp.Location = new System.Drawing.Point(493, 217);
             this.SnkUp.Name = "SnkUp";
@@ -97,10 +95,12 @@
             this.SnkUp.TabIndex = 4;
             this.SnkUp.Text = "▲";
             this.SnkUp.UseVisualStyleBackColor = true;
-//            this.SnkUp.Click += new System.EventHandler(this.SnkUp_Click);
+            this.SnkUp.Click += new System.EventHandler(this.SnkUp_Click);
+            this.SnkUp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             // 
             // SnkDown
             // 
+            this.SnkDown.Enabled = false;
             this.SnkDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SnkDown.Location = new System.Drawing.Point(493, 298);
             this.SnkDown.Name = "SnkDown";
@@ -108,10 +108,12 @@
             this.SnkDown.TabIndex = 5;
             this.SnkDown.Text = "▼";
             this.SnkDown.UseVisualStyleBackColor = true;
-      //      this.SnkDown.Click += new System.EventHandler(this.SnkDown_Click);
+            this.SnkDown.Click += new System.EventHandler(this.SnkDown_Click);
+            this.SnkDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             // 
             // SnkLeft
             // 
+            this.SnkLeft.Enabled = false;
             this.SnkLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SnkLeft.Location = new System.Drawing.Point(412, 298);
             this.SnkLeft.Name = "SnkLeft";
@@ -119,10 +121,12 @@
             this.SnkLeft.TabIndex = 6;
             this.SnkLeft.Text = "◀";
             this.SnkLeft.UseVisualStyleBackColor = true;
-      //      this.SnkLeft.Click += new System.EventHandler(this.SnkLeft_Click);
+            this.SnkLeft.Click += new System.EventHandler(this.SnkLeft_Click);
+            this.SnkLeft.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             // 
             // SnkRight
             // 
+            this.SnkRight.Enabled = false;
             this.SnkRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SnkRight.Location = new System.Drawing.Point(574, 298);
             this.SnkRight.Name = "SnkRight";
@@ -130,42 +134,13 @@
             this.SnkRight.TabIndex = 7;
             this.SnkRight.Text = "▶";
             this.SnkRight.UseVisualStyleBackColor = true;
-     //       this.SnkRight.Click += new System.EventHandler(this.SnkRight_Click);
-            // 
-            // RBTipkovnica
-            // 
-            this.RBTipkovnica.Checked = true;
-            this.RBTipkovnica.Location = new System.Drawing.Point(697, 227);
-            this.RBTipkovnica.Name = "RBTipkovnica";
-            this.RBTipkovnica.Size = new System.Drawing.Size(78, 17);
-            this.RBTipkovnica.TabIndex = 8;
-            this.RBTipkovnica.TabStop = true;
-            this.RBTipkovnica.Text = "Tipkovnica";
-            this.RBTipkovnica.UseVisualStyleBackColor = true;
-            // 
-            // RBBotuni
-            // 
-            this.RBBotuni.AutoSize = true;
-            this.RBBotuni.Location = new System.Drawing.Point(697, 250);
-            this.RBBotuni.Name = "RBBotuni";
-            this.RBBotuni.Size = new System.Drawing.Size(55, 17);
-            this.RBBotuni.TabIndex = 9;
-            this.RBBotuni.Text = "Botuni";
-            this.RBBotuni.UseVisualStyleBackColor = true;
-            // 
-            // BtnUnos
-            // 
-            this.BtnUnos.Location = new System.Drawing.Point(781, 227);
-            this.BtnUnos.Name = "BtnUnos";
-            this.BtnUnos.Size = new System.Drawing.Size(119, 40);
-            this.BtnUnos.TabIndex = 10;
-            this.BtnUnos.Text = "Promjeni unos";
-            this.BtnUnos.UseVisualStyleBackColor = true;
-            this.BtnUnos.Click += new System.EventHandler(this.BtnUnos_Click);
+            this.SnkRight.Click += new System.EventHandler(this.SnkRight_Click);
+            this.SnkRight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             // 
             // TBSpeed
             // 
             this.TBSpeed.BackColor = System.Drawing.SystemColors.Control;
+            this.TBSpeed.Enabled = false;
             this.TBSpeed.Location = new System.Drawing.Point(697, 298);
             this.TBSpeed.Maximum = 32;
             this.TBSpeed.Minimum = 16;
@@ -181,9 +156,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1139, 389);
             this.Controls.Add(this.TBSpeed);
-            this.Controls.Add(this.BtnUnos);
-            this.Controls.Add(this.RBBotuni);
-            this.Controls.Add(this.RBTipkovnica);
             this.Controls.Add(this.SnkRight);
             this.Controls.Add(this.SnkLeft);
             this.Controls.Add(this.SnkDown);
@@ -195,8 +167,6 @@
             this.Name = "Form1";
             this.Text = "Zmija";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TBSpeed)).EndInit();
             this.ResumeLayout(false);
@@ -215,9 +185,6 @@
         private System.Windows.Forms.Button SnkDown;
         private System.Windows.Forms.Button SnkLeft;
         private System.Windows.Forms.Button SnkRight;
-        private System.Windows.Forms.RadioButton RBTipkovnica;
-        private System.Windows.Forms.RadioButton RBBotuni;
-        private System.Windows.Forms.Button BtnUnos;
         private System.Windows.Forms.TrackBar TBSpeed;
     }
 }

@@ -19,11 +19,12 @@ namespace WFSnake
             {
                 return false;
             }
-            return (bool)keyTable[key];
+            return (bool)keyTable[key]; 
         }
 
         public static void ChangeState(Keys key, bool state)
         {
+            keyTable.Clear();
             keyTable[key] = state;
         }
     }

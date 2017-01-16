@@ -16,10 +16,15 @@ namespace WFSnake
     {
         private List<Circle> Snake = new List<Circle>();
         private Circle food = new Circle();
-        public Form1()
+        public Form1() : base()
         {
-
             InitializeComponent();
+
+            this.KeyDown += new KeyEventHandler(this.Form1_KeyDown);
+            //SnkDown.KeyDown += new KeyEventHandler(this.Form1_KeyDown);
+            //SnkUp.KeyDown += new KeyEventHandler(this.Form1_KeyDown);
+            //SnkLeft.KeyDown += new KeyEventHandler(this.Form1_KeyDown);
+            //SnkRight.KeyDown += new KeyEventHandler(this.Form1_KeyDown);
 
             new Settings();
 
@@ -134,7 +139,7 @@ namespace WFSnake
             food.Y = b;
         }
 
-        /*private void SnkUp_Click(object sender, EventArgs e)
+        private void SnkUp_Click(object sender, EventArgs e)
         {
             Button Q = (Button)sender;
             if (Settings.direction != Direction.Down)
@@ -160,8 +165,8 @@ namespace WFSnake
             Button r = (Button)sender;
             if (Settings.direction != Direction.Left)
                 Settings.direction = Direction.Right;
-        }*/
-        
+        }
+
 
         private void UpdateScreen(object sender, EventArgs e)
         {
@@ -174,17 +179,16 @@ namespace WFSnake
             }
             else
             {
-                if (RBTipkovnica.Checked)
-                {
-                    if (Input.KeyPressed(Keys.Right) && Settings.direction != Direction.Left)
-                        Settings.direction = Direction.Right;
-                    else if (Input.KeyPressed(Keys.Left) && Settings.direction != Direction.Right)
-                        Settings.direction = Direction.Left;
-                    else if (Input.KeyPressed(Keys.Up) && Settings.direction != Direction.Down)
-                        Settings.direction = Direction.Up;
-                    else if (Input.KeyPressed(Keys.Down) && Settings.direction != Direction.Up)
-                        Settings.direction = Direction.Down;
-                }
+
+                if (Input.KeyPressed(Keys.Right) && Settings.direction != Direction.Left)
+                    Settings.direction = Direction.Right;
+                else if (Input.KeyPressed(Keys.Left) && Settings.direction != Direction.Right)
+                    Settings.direction = Direction.Left;
+                else if (Input.KeyPressed(Keys.Up) && Settings.direction != Direction.Down)
+                    Settings.direction = Direction.Up;
+                else if (Input.KeyPressed(Keys.Down) && Settings.direction != Direction.Up)
+                    Settings.direction = Direction.Down;
+
                 MovePlayer();
             }
             pbCanvas.Invalidate();
@@ -328,12 +332,14 @@ namespace WFSnake
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             Input.ChangeState(e.KeyCode, true);
+            this.UpdateScreen(sender, e);
+            e.Handled = true;
         }
 
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
-        {
-            Input.ChangeState(e.KeyCode, false);
-        }
+        //private void Form1_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    Input.ChangeState(e.KeyCode, false);
+        //}
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -345,21 +351,11 @@ namespace WFSnake
 
         }
 
-        private void BtnUnos_Click(object sender, EventArgs e)
-        {
-            if (RBTipkovnica.Checked)
-            {
-
-            }
-            else if (RBBotuni.Checked)
-            {
-
-            }
-        }
         private void TBSpeed_Scroll(object sender, EventArgs e)
         {
             Settings.Speed = TBSpeed.Value;
             gameTimer.Interval = 1000 / Settings.Speed;
         }
+
     }
 }
