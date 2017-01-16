@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Speech.Recognition;
+using System.Speech.Synthesis;
 
 namespace WFSnake
 {
@@ -16,6 +18,7 @@ namespace WFSnake
         private Circle food = new Circle();
         public Form1()
         {
+
             InitializeComponent();
 
             new Settings();
@@ -24,7 +27,53 @@ namespace WFSnake
             gameTimer.Tick += UpdateScreen;
             gameTimer.Start();
 
+            SpeechSynthesizer sSynth = new SpeechSynthesizer();
+            PromptBuilder pBuilder = new PromptBuilder();
+            SpeechRecognitionEngine sRecognize = new SpeechRecognitionEngine();
+
+
+
+            Choices sList = new Choices();
+            sList.Add(new string[] { "left", "up", "down", "right" });
+            Grammar gr = new Grammar(new GrammarBuilder(sList));
+            try
+            {
+                sRecognize.RequestRecognizerUpdate();
+                sRecognize.LoadGrammar(gr);
+                sRecognize.SpeechRecognized += sRecognize_speechRecognized;
+                sRecognize.SetInputToDefaultAudioDevice();
+                sRecognize.RecognizeAsync(RecognizeMode.Multiple);
+            }
+            catch
+            {
+                return;
+            }
+
             StartGame();
+        }
+
+        private void sRecognize_speechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            if (e.Result.Text == "up")
+            {
+                if (Settings.direction != Direction.Down)
+                    Settings.direction = Direction.Up;
+            }
+            else if (e.Result.Text == "down")
+            {
+                if (Settings.direction != Direction.Up)
+                    Settings.direction = Direction.Down;
+            }
+            else if (e.Result.Text == "left")
+            {
+                if (Settings.direction != Direction.Right)
+                    Settings.direction = Direction.Left;
+            }
+            else if (e.Result.Text == "right")
+            {
+                if (Settings.direction != Direction.Left)
+                    Settings.direction = Direction.Right;
+            }
         }
 
         private void StartGame()
@@ -80,10 +129,39 @@ namespace WFSnake
                     }
                 }
             } while (T);
-           
+
             food.X = a;
             food.Y = b;
         }
+
+        /*private void SnkUp_Click(object sender, EventArgs e)
+        {
+            Button Q = (Button)sender;
+            if (Settings.direction != Direction.Down)
+                Settings.direction = Direction.Up;
+        }
+
+        private void SnkDown_Click(object sender, EventArgs e)
+        {
+            Button W = (Button)sender;
+            if (Settings.direction != Direction.Up)
+                Settings.direction = Direction.Down;
+        }
+
+        private void SnkLeft_Click(object sender, EventArgs e)
+        {
+            Button E = (Button)sender;
+            if (Settings.direction != Direction.Right)
+                Settings.direction = Direction.Left;
+        }
+
+        private void SnkRight_Click(object sender, EventArgs e)
+        {
+            Button r = (Button)sender;
+            if (Settings.direction != Direction.Left)
+                Settings.direction = Direction.Right;
+        }*/
+        
 
         private void UpdateScreen(object sender, EventArgs e)
         {
@@ -96,20 +174,22 @@ namespace WFSnake
             }
             else
             {
-                if (Input.KeyPressed(Keys.Right) && Settings.direction != Direction.Left)
-                    Settings.direction = Direction.Right;
-                else if (Input.KeyPressed(Keys.Left) && Settings.direction != Direction.Right)
-                    Settings.direction = Direction.Left;
-                else if (Input.KeyPressed(Keys.Up) && Settings.direction != Direction.Down)
-                    Settings.direction = Direction.Up;
-                else if (Input.KeyPressed(Keys.Down) && Settings.direction != Direction.Up)
-                    Settings.direction = Direction.Down;
-
+                if (RBTipkovnica.Checked)
+                {
+                    if (Input.KeyPressed(Keys.Right) && Settings.direction != Direction.Left)
+                        Settings.direction = Direction.Right;
+                    else if (Input.KeyPressed(Keys.Left) && Settings.direction != Direction.Right)
+                        Settings.direction = Direction.Left;
+                    else if (Input.KeyPressed(Keys.Up) && Settings.direction != Direction.Down)
+                        Settings.direction = Direction.Up;
+                    else if (Input.KeyPressed(Keys.Down) && Settings.direction != Direction.Up)
+                        Settings.direction = Direction.Down;
+                }
                 MovePlayer();
             }
-
             pbCanvas.Invalidate();
         }
+
 
         private void pbCanvas_Paint(object sender, PaintEventArgs e)
         {
@@ -148,7 +228,8 @@ namespace WFSnake
             }
             else
             {
-                string gameOver = "Game over \nYour final score is: " + Settings.Score + "\nPress ENTER to start again.";
+                //MessageBox.Show("Gotova igra \nTvoj rezultat je: " + Settings.Score + "\nPritisni ENTER za ponovo poceti.", "Probajte ponovo");
+                string gameOver = "Gotova igra \nTvoj rezultat je: " + Settings.Score + "\nPritisni ENTER za ponovo poceti.";
                 lblGameOver.Text = gameOver;
                 lblGameOver.Visible = true;
             }
@@ -183,7 +264,7 @@ namespace WFSnake
                     /*if (Snake[i].X < 0 || Snake[i].Y < 0 || Snake[i].X > maxXPos || Snake[i].Y > maxYPos)
                     {
                         Die();
-                    }*/ 
+                    }*/
                     if (Snake[i].X < 0)
                     {
                         Snake[i].X = maxXPos;
@@ -262,6 +343,23 @@ namespace WFSnake
         private void pbCanvas_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnUnos_Click(object sender, EventArgs e)
+        {
+            if (RBTipkovnica.Checked)
+            {
+
+            }
+            else if (RBBotuni.Checked)
+            {
+
+            }
+        }
+        private void TBSpeed_Scroll(object sender, EventArgs e)
+        {
+            Settings.Speed = TBSpeed.Value;
+            gameTimer.Interval = 1000 / Settings.Speed;
         }
     }
 }
