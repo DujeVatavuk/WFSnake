@@ -16,6 +16,9 @@ namespace WFSnake
     {
         private List<Circle> Snake = new List<Circle>();
         private Circle food = new Circle();
+
+        public Settings Settings = new Settings();
+
         public Form1() : base()
         {
             InitializeComponent();
@@ -29,8 +32,6 @@ namespace WFSnake
             SpeechSynthesizer sSynth = new SpeechSynthesizer();
             PromptBuilder pBuilder = new PromptBuilder();
             SpeechRecognitionEngine sRecognize = new SpeechRecognitionEngine();
-
-
 
             Choices sList = new Choices();
             sList.Add(new string[] { "left", "up", "down", "right" });
@@ -55,23 +56,23 @@ namespace WFSnake
         {
             if (e.Result.Text == "up")
             {
-                if (Settings.direction != Direction.Down)
-                    Settings.direction = Direction.Up;
+                if (Settings.Direction != Direction.Down)
+                    Settings.Direction = Direction.Up;
             }
             else if (e.Result.Text == "down")
             {
-                if (Settings.direction != Direction.Up)
-                    Settings.direction = Direction.Down;
+                if (Settings.Direction != Direction.Up)
+                    Settings.Direction = Direction.Down;
             }
             else if (e.Result.Text == "left")
             {
-                if (Settings.direction != Direction.Right)
-                    Settings.direction = Direction.Left;
+                if (Settings.Direction != Direction.Right)
+                    Settings.Direction = Direction.Left;
             }
             else if (e.Result.Text == "right")
             {
-                if (Settings.direction != Direction.Left)
-                    Settings.direction = Direction.Right;
+                if (Settings.Direction != Direction.Left)
+                    Settings.Direction = Direction.Right;
             }
         }
 
@@ -79,13 +80,14 @@ namespace WFSnake
         {
             lblGameOver.Visible = false;
 
-            new Settings();
+            Settings.NewGameSettings();
 
             Snake.Clear();
             Circle head = new Circle { X = 10, Y = 5 };
             Snake.Add(head);
 
             lblScore.Text = Settings.Score.ToString();
+            WallDisabledCheckBox.Checked = Settings.WallDisabled;
 
             GenerateFood();
 
@@ -136,7 +138,7 @@ namespace WFSnake
         private void SnkUp_Click(object sender, EventArgs e)
         {
             Button Q = (Button)sender;
-            if (Settings.direction != Direction.Down)
+            if (Settings.Direction != Direction.Down)
             {
                 //Settings.direction = Direction.Up;
                 Input.ChangeState(Keys.Up, true);
@@ -146,7 +148,7 @@ namespace WFSnake
         private void SnkDown_Click(object sender, EventArgs e)
         {
             Button W = (Button)sender;
-            if (Settings.direction != Direction.Up)
+            if (Settings.Direction != Direction.Up)
             {
                 //Settings.direction = Direction.Down;
                 Input.ChangeState(Keys.Down, true);
@@ -156,7 +158,7 @@ namespace WFSnake
         private void SnkLeft_Click(object sender, EventArgs e)
         {
             Button E = (Button)sender;
-            if (Settings.direction != Direction.Right)
+            if (Settings.Direction != Direction.Right)
             {
                 //Settings.direction = Direction.Left;
                 Input.ChangeState(Keys.Left, true);
@@ -167,7 +169,7 @@ namespace WFSnake
         private void SnkRight_Click(object sender, EventArgs e)
         {
             Button r = (Button)sender;
-            if (Settings.direction != Direction.Left)
+            if (Settings.Direction != Direction.Left)
             {
                 //Settings.direction = Direction.Right;
                 Input.ChangeState(Keys.Right, true);
@@ -188,14 +190,14 @@ namespace WFSnake
             else
             {
 
-                if (Input.KeyPressed(Keys.Right) && Settings.direction != Direction.Left)
-                    Settings.direction = Direction.Right;
-                else if (Input.KeyPressed(Keys.Left) && Settings.direction != Direction.Right)
-                    Settings.direction = Direction.Left;
-                else if (Input.KeyPressed(Keys.Up) && Settings.direction != Direction.Down)
-                    Settings.direction = Direction.Up;
-                else if (Input.KeyPressed(Keys.Down) && Settings.direction != Direction.Up)
-                    Settings.direction = Direction.Down;
+                if (Input.KeyPressed(Keys.Right) && Settings.Direction != Direction.Left)
+                    Settings.Direction = Direction.Right;
+                else if (Input.KeyPressed(Keys.Left) && Settings.Direction != Direction.Right)
+                    Settings.Direction = Direction.Left;
+                else if (Input.KeyPressed(Keys.Up) && Settings.Direction != Direction.Down)
+                    Settings.Direction = Direction.Up;
+                else if (Input.KeyPressed(Keys.Down) && Settings.Direction != Direction.Up)
+                    Settings.Direction = Direction.Down;
 
                 MovePlayer();
             }
@@ -253,7 +255,7 @@ namespace WFSnake
             {
                 if (i == 0)
                 {
-                    switch(Settings.direction)
+                    switch(Settings.Direction)
                     {
                         case Direction.Right:
                             Snake[i].X++;
@@ -273,26 +275,32 @@ namespace WFSnake
                     int maxYPos = pbCanvas.Size.Height / Settings.Height;
 
                     // Granice
-                    if (Snake[i].X < 0 || Snake[i].Y < 0 || Snake[i].X > maxXPos || Snake[i].Y > maxYPos)
+                    if (!Settings.WallDisabled)
                     {
-                        Die();
+                        if (Snake[i].X < 0 || Snake[i].Y < 0 || Snake[i].X > maxXPos || Snake[i].Y > maxYPos)
+                        {
+                            Die();
+                        }
                     }
-                    //if (Snake[i].X < 0)
-                    //{
-                    //    Snake[i].X = maxXPos;
-                    //}
-                    //else if (Snake[i].Y < 0)
-                    //{
-                    //    Snake[i].Y = maxYPos;
-                    //}
-                    //else if (Snake[i].X >= maxXPos)
-                    //{
-                    //    Snake[i].X = 0;
-                    //}
-                    //else if (Snake[i].Y >= maxYPos)
-                    //{
-                    //    Snake[i].Y = 0;
-                    //}
+                    else
+                    {
+                        if (Snake[i].X < 0)
+                        {
+                            Snake[i].X = maxXPos;
+                        }
+                        else if (Snake[i].Y < 0)
+                        {
+                            Snake[i].Y = maxYPos;
+                        }
+                        else if (Snake[i].X >= maxXPos)
+                        {
+                            Snake[i].X = 0;
+                        }
+                        else if (Snake[i].Y >= maxYPos)
+                        {
+                            Snake[i].Y = 0;
+                        }
+                    }
 
                     // Sama sa sobom
                     for (int j=1; j<Snake.Count; j++)
@@ -377,5 +385,9 @@ namespace WFSnake
             gameTimer.Interval = 1000 / Settings.Speed;
         }
 
+        private void WallEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.WallDisabled = WallDisabledCheckBox.Checked;
+        }
     }
 }

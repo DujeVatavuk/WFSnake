@@ -39,6 +39,7 @@
             this.SnkLeft = new System.Windows.Forms.Button();
             this.SnkRight = new System.Windows.Forms.Button();
             this.TBSpeed = new System.Windows.Forms.TrackBar();
+            this.WallDisabledCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TBSpeed)).BeginInit();
             this.SuspendLayout();
@@ -136,7 +137,7 @@
             // TBSpeed
             // 
             this.TBSpeed.BackColor = System.Drawing.SystemColors.Control;
-            this.TBSpeed.Location = new System.Drawing.Point(697, 298);
+            this.TBSpeed.Location = new System.Drawing.Point(412, 131);
             this.TBSpeed.Maximum = 32;
             this.TBSpeed.Minimum = 16;
             this.TBSpeed.Name = "TBSpeed";
@@ -146,11 +147,23 @@
             this.TBSpeed.Value = 16;
             this.TBSpeed.Scroll += new System.EventHandler(this.TBSpeed_Scroll);
             // 
+            // WallDisabledCheckBox
+            // 
+            this.WallDisabledCheckBox.AutoSize = true;
+            this.WallDisabledCheckBox.Location = new System.Drawing.Point(412, 93);
+            this.WallDisabledCheckBox.Name = "WallDisabledCheckBox";
+            this.WallDisabledCheckBox.Size = new System.Drawing.Size(83, 17);
+            this.WallDisabledCheckBox.TabIndex = 12;
+            this.WallDisabledCheckBox.Text = "zid iskljućen";
+            this.WallDisabledCheckBox.UseVisualStyleBackColor = true;
+            this.WallDisabledCheckBox.CheckedChanged += new System.EventHandler(this.WallEnabledCheckBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1139, 389);
+            this.Controls.Add(this.WallDisabledCheckBox);
             this.Controls.Add(this.TBSpeed);
             this.Controls.Add(this.SnkRight);
             this.Controls.Add(this.SnkLeft);
@@ -182,6 +195,7 @@
         private System.Windows.Forms.Button SnkLeft;
         private System.Windows.Forms.Button SnkRight;
         private System.Windows.Forms.TrackBar TBSpeed;
+        private System.Windows.Forms.CheckBox WallDisabledCheckBox;
     }
 }
 
