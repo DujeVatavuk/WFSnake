@@ -49,7 +49,7 @@ namespace WFSnake
                 return;
             }
 
-            StartGame();
+            //StartGame();
         }
 
         private void sRecognize_speechRecognized(object sender, SpeechRecognizedEventArgs e)
@@ -78,8 +78,6 @@ namespace WFSnake
 
         private void StartGame()
         {
-            lblGameOver.Visible = false;
-
             Settings.NewGameSettings();
 
             Snake.Clear();
@@ -90,7 +88,6 @@ namespace WFSnake
             WallDisabledCheckBox.Checked = Settings.WallDisabled;
 
             GenerateFood();
-
         }
 
         private void GenerateFood()
@@ -163,7 +160,7 @@ namespace WFSnake
                 //Settings.direction = Direction.Left;
                 Input.ChangeState(Keys.Left, true);
             }
-            
+
         }
 
         private void SnkRight_Click(object sender, EventArgs e)
@@ -174,7 +171,7 @@ namespace WFSnake
                 //Settings.direction = Direction.Right;
                 Input.ChangeState(Keys.Right, true);
             }
-            
+
         }
 
 
@@ -225,7 +222,7 @@ namespace WFSnake
                                       Settings.Width, Settings.Height));
                     }
                     else
-                    { 
+                    {
                         snakeColour = Brushes.Turquoise;
 
                         canvas.FillRectangle(snakeColour,
@@ -240,13 +237,6 @@ namespace WFSnake
                         food.Y * Settings.Height, Settings.Width, Settings.Height));
                 }
             }
-            else
-            {
-                //MessageBox.Show("Gotova igra \nTvoj rezultat je: " + Settings.Score + "\nPritisni ENTER za ponovo poceti.", "Probajte ponovo");
-                string gameOver = "Gotova igra \nTvoj rezultat je: " + Settings.Score + "\nPritisni ENTER za ponovo poceti.";
-                lblGameOver.Text = gameOver;
-                lblGameOver.Visible = true;
-            }
         }
 
         private void MovePlayer()
@@ -255,7 +245,7 @@ namespace WFSnake
             {
                 if (i == 0)
                 {
-                    switch(Settings.Direction)
+                    switch (Settings.Direction)
                     {
                         case Direction.Right:
                             Snake[i].X++;
@@ -303,9 +293,9 @@ namespace WFSnake
                     }
 
                     // Sama sa sobom
-                    for (int j=1; j<Snake.Count; j++)
+                    for (int j = 1; j < Snake.Count; j++)
                     {
-                        if(Snake[i].X == Snake[j].X && Snake[i].Y == Snake[j].Y)
+                        if (Snake[i].X == Snake[j].X && Snake[i].Y == Snake[j].Y)
                         {
                             Die();
                         }
@@ -343,6 +333,8 @@ namespace WFSnake
         private void Die()
         {
             Settings.GameOver = true;
+
+            MessageBox.Show("Gotova igra \nTvoj rezultat je: " + Settings.Score + "\nPritisni ENTER za ponovo poceti.", "Probajte ponovo");
         }
 
         //private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -388,6 +380,11 @@ namespace WFSnake
         private void WallEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.WallDisabled = WallDisabledCheckBox.Checked;
+        }
+
+        private void StartButton_Click(object sender, EventArgs e)
+        {
+            StartGame();
         }
     }
 }

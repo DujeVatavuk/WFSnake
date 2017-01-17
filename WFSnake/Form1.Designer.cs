@@ -33,13 +33,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
-            this.lblGameOver = new System.Windows.Forms.Label();
             this.SnkUp = new System.Windows.Forms.Button();
             this.SnkDown = new System.Windows.Forms.Button();
             this.SnkLeft = new System.Windows.Forms.Button();
             this.SnkRight = new System.Windows.Forms.Button();
             this.TBSpeed = new System.Windows.Forms.TrackBar();
             this.WallDisabledCheckBox = new System.Windows.Forms.CheckBox();
+            this.StartButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TBSpeed)).BeginInit();
             this.SuspendLayout();
@@ -74,17 +74,6 @@
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(0, 37);
             this.lblScore.TabIndex = 2;
-            // 
-            // lblGameOver
-            // 
-            this.lblGameOver.AutoSize = true;
-            this.lblGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblGameOver.Location = new System.Drawing.Point(21, 19);
-            this.lblGameOver.Name = "lblGameOver";
-            this.lblGameOver.Size = new System.Drawing.Size(86, 31);
-            this.lblGameOver.TabIndex = 3;
-            this.lblGameOver.Text = "label2";
-            this.lblGameOver.Visible = false;
             // 
             // SnkUp
             // 
@@ -158,18 +147,28 @@
             this.WallDisabledCheckBox.UseVisualStyleBackColor = true;
             this.WallDisabledCheckBox.CheckedChanged += new System.EventHandler(this.WallEnabledCheckBox_CheckedChanged);
             // 
+            // StartButton
+            // 
+            this.StartButton.Location = new System.Drawing.Point(713, 51);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(75, 23);
+            this.StartButton.TabIndex = 13;
+            this.StartButton.Text = "Nova igra";
+            this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1139, 389);
+            this.Controls.Add(this.StartButton);
             this.Controls.Add(this.WallDisabledCheckBox);
             this.Controls.Add(this.TBSpeed);
             this.Controls.Add(this.SnkRight);
             this.Controls.Add(this.SnkLeft);
             this.Controls.Add(this.SnkDown);
             this.Controls.Add(this.SnkUp);
-            this.Controls.Add(this.lblGameOver);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pbCanvas);
@@ -189,13 +188,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Timer gameTimer;
-        private System.Windows.Forms.Label lblGameOver;
         private System.Windows.Forms.Button SnkUp;
         private System.Windows.Forms.Button SnkDown;
         private System.Windows.Forms.Button SnkLeft;
         private System.Windows.Forms.Button SnkRight;
         private System.Windows.Forms.TrackBar TBSpeed;
         private System.Windows.Forms.CheckBox WallDisabledCheckBox;
+        private System.Windows.Forms.Button StartButton;
     }
 }
 
