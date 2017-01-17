@@ -177,15 +177,17 @@ namespace WFSnake
 
         private void UpdateScreen(object sender, EventArgs e)
         {
-            if (Settings.GameOver == true)
+            if (Input.KeyPressed(Keys.Enter))
             {
-                if (Input.KeyPressed(Keys.Enter))
-                {
-                    StartGame();
-                }
+                StartGame();
             }
             else
             {
+                if (Settings.GameOver)
+                {
+                    return;
+                }
+
 
                 if (Input.KeyPressed(Keys.Right) && Settings.Direction != Direction.Left)
                     Settings.Direction = Direction.Right;
