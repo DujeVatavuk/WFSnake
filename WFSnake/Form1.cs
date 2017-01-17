@@ -20,12 +20,6 @@ namespace WFSnake
         {
             InitializeComponent();
 
-            this.KeyDown += new KeyEventHandler(this.Form1_KeyDown);
-            //SnkDown.KeyDown += new KeyEventHandler(this.Form1_KeyDown);
-            //SnkUp.KeyDown += new KeyEventHandler(this.Form1_KeyDown);
-            //SnkLeft.KeyDown += new KeyEventHandler(this.Form1_KeyDown);
-            //SnkRight.KeyDown += new KeyEventHandler(this.Form1_KeyDown);
-
             new Settings();
 
             gameTimer.Interval = 1000 / Settings.Speed;
@@ -143,28 +137,42 @@ namespace WFSnake
         {
             Button Q = (Button)sender;
             if (Settings.direction != Direction.Down)
-                Settings.direction = Direction.Up;
+            {
+                //Settings.direction = Direction.Up;
+                Input.ChangeState(Keys.Up, true);
+            }
         }
 
         private void SnkDown_Click(object sender, EventArgs e)
         {
             Button W = (Button)sender;
             if (Settings.direction != Direction.Up)
-                Settings.direction = Direction.Down;
+            {
+                //Settings.direction = Direction.Down;
+                Input.ChangeState(Keys.Down, true);
+            }
         }
 
         private void SnkLeft_Click(object sender, EventArgs e)
         {
             Button E = (Button)sender;
             if (Settings.direction != Direction.Right)
-                Settings.direction = Direction.Left;
+            {
+                //Settings.direction = Direction.Left;
+                Input.ChangeState(Keys.Left, true);
+            }
+            
         }
 
         private void SnkRight_Click(object sender, EventArgs e)
         {
             Button r = (Button)sender;
             if (Settings.direction != Direction.Left)
-                Settings.direction = Direction.Right;
+            {
+                //Settings.direction = Direction.Right;
+                Input.ChangeState(Keys.Right, true);
+            }
+            
         }
 
 
@@ -265,26 +273,26 @@ namespace WFSnake
                     int maxYPos = pbCanvas.Size.Height / Settings.Height;
 
                     // Granice
-                    /*if (Snake[i].X < 0 || Snake[i].Y < 0 || Snake[i].X > maxXPos || Snake[i].Y > maxYPos)
+                    if (Snake[i].X < 0 || Snake[i].Y < 0 || Snake[i].X > maxXPos || Snake[i].Y > maxYPos)
                     {
                         Die();
-                    }*/
-                    if (Snake[i].X < 0)
-                    {
-                        Snake[i].X = maxXPos;
                     }
-                    else if (Snake[i].Y < 0)
-                    {
-                        Snake[i].Y = maxYPos;
-                    }
-                    else if (Snake[i].X >= maxXPos)
-                    {
-                        Snake[i].X = 0;
-                    }
-                    else if (Snake[i].Y >= maxYPos)
-                    {
-                        Snake[i].Y = 0;
-                    }
+                    //if (Snake[i].X < 0)
+                    //{
+                    //    Snake[i].X = maxXPos;
+                    //}
+                    //else if (Snake[i].Y < 0)
+                    //{
+                    //    Snake[i].Y = maxYPos;
+                    //}
+                    //else if (Snake[i].X >= maxXPos)
+                    //{
+                    //    Snake[i].X = 0;
+                    //}
+                    //else if (Snake[i].Y >= maxYPos)
+                    //{
+                    //    Snake[i].Y = 0;
+                    //}
 
                     // Sama sa sobom
                     for (int j=1; j<Snake.Count; j++)
@@ -329,11 +337,23 @@ namespace WFSnake
             Settings.GameOver = true;
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        //private void Form1_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    this.Focus();
+        //    Input.ChangeState(e.KeyCode, true);
+        //    this.UpdateScreen(sender, e);
+        //    e.Handled = true;
+        //}
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            Input.ChangeState(e.KeyCode, true);
-            this.UpdateScreen(sender, e);
-            e.Handled = true;
+            if (keyData == Keys.Left || keyData == Keys.Right || keyData == Keys.Up || keyData == Keys.Down || keyData == Keys.Enter)
+            {
+                Input.ChangeState(keyData, true);
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         //private void Form1_KeyUp(object sender, KeyEventArgs e)

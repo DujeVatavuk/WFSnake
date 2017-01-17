@@ -87,66 +87,62 @@
             // 
             // SnkUp
             // 
-            this.SnkUp.Enabled = false;
             this.SnkUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SnkUp.Location = new System.Drawing.Point(493, 217);
             this.SnkUp.Name = "SnkUp";
             this.SnkUp.Size = new System.Drawing.Size(75, 75);
             this.SnkUp.TabIndex = 4;
+            this.SnkUp.TabStop = false;
             this.SnkUp.Text = "▲";
             this.SnkUp.UseVisualStyleBackColor = true;
             this.SnkUp.Click += new System.EventHandler(this.SnkUp_Click);
-            this.SnkUp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             // 
             // SnkDown
             // 
-            this.SnkDown.Enabled = false;
             this.SnkDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SnkDown.Location = new System.Drawing.Point(493, 298);
             this.SnkDown.Name = "SnkDown";
             this.SnkDown.Size = new System.Drawing.Size(75, 75);
             this.SnkDown.TabIndex = 5;
+            this.SnkDown.TabStop = false;
             this.SnkDown.Text = "▼";
             this.SnkDown.UseVisualStyleBackColor = true;
             this.SnkDown.Click += new System.EventHandler(this.SnkDown_Click);
-            this.SnkDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             // 
             // SnkLeft
             // 
-            this.SnkLeft.Enabled = false;
             this.SnkLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SnkLeft.Location = new System.Drawing.Point(412, 298);
             this.SnkLeft.Name = "SnkLeft";
             this.SnkLeft.Size = new System.Drawing.Size(75, 75);
             this.SnkLeft.TabIndex = 6;
+            this.SnkLeft.TabStop = false;
             this.SnkLeft.Text = "◀";
             this.SnkLeft.UseVisualStyleBackColor = true;
             this.SnkLeft.Click += new System.EventHandler(this.SnkLeft_Click);
-            this.SnkLeft.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             // 
             // SnkRight
             // 
-            this.SnkRight.Enabled = false;
             this.SnkRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SnkRight.Location = new System.Drawing.Point(574, 298);
             this.SnkRight.Name = "SnkRight";
             this.SnkRight.Size = new System.Drawing.Size(75, 75);
             this.SnkRight.TabIndex = 7;
+            this.SnkRight.TabStop = false;
             this.SnkRight.Text = "▶";
             this.SnkRight.UseVisualStyleBackColor = true;
             this.SnkRight.Click += new System.EventHandler(this.SnkRight_Click);
-            this.SnkRight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             // 
             // TBSpeed
             // 
             this.TBSpeed.BackColor = System.Drawing.SystemColors.Control;
-            this.TBSpeed.Enabled = false;
             this.TBSpeed.Location = new System.Drawing.Point(697, 298);
             this.TBSpeed.Maximum = 32;
             this.TBSpeed.Minimum = 16;
             this.TBSpeed.Name = "TBSpeed";
             this.TBSpeed.Size = new System.Drawing.Size(203, 45);
             this.TBSpeed.TabIndex = 11;
+            this.TBSpeed.TabStop = false;
             this.TBSpeed.Value = 16;
             this.TBSpeed.Scroll += new System.EventHandler(this.TBSpeed_Scroll);
             // 

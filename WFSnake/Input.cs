@@ -19,13 +19,23 @@ namespace WFSnake
             {
                 return false;
             }
-            return (bool)keyTable[key]; 
+            if((bool)keyTable[key] == true)
+            {
+                lock (keyTable.SyncRoot)
+                {
+                    keyTable.Remove(key);
+                }
+                return true;
+            }
+            return false; 
         }
 
         public static void ChangeState(Keys key, bool state)
         {
-            keyTable.Clear();
-            keyTable[key] = state;
+            lock (keyTable.SyncRoot)
+            {
+                keyTable[key] = state;
+            }
         }
     }
 }
