@@ -14,8 +14,8 @@ namespace WFSnake
 {
     public partial class Form1 : Form
     {
-        private List<Circle> Snake = new List<Circle>();
-        private Circle food = new Circle();
+        private List<Rectangle> Snake = new List<Rectangle>();
+        private Rectangle food = new Rectangle();
 
         public Settings Settings = new Settings();
 
@@ -81,7 +81,7 @@ namespace WFSnake
             Settings.NewGameSettings();
 
             Snake.Clear();
-            Circle head = new Circle { X = 10, Y = 5 };
+            Rectangle head = new Rectangle { X = 10, Y = 5 };
             Snake.Add(head);
 
             lblScore.Text = Settings.Score.ToString();
@@ -100,7 +100,7 @@ namespace WFSnake
             int maxYPos = pbCanvas.Size.Height / Settings.Height;
 
             Random random = new Random();
-            food = new Circle();
+            food = new Rectangle();
             /*A:
             a = random.Next(0, maxXPos);
             b = random.Next(0, maxYPos);
@@ -219,7 +219,7 @@ namespace WFSnake
                         snakeColour = Brushes.DimGray;
 
                         canvas.FillRectangle(snakeColour,
-                        new Rectangle(Snake[i].X * Settings.Width,
+                        new System.Drawing.Rectangle(Snake[i].X * Settings.Width,
                                       Snake[i].Y * Settings.Height,
                                       Settings.Width, Settings.Height));
                     }
@@ -228,14 +228,14 @@ namespace WFSnake
                         snakeColour = Brushes.Turquoise;
 
                         canvas.FillRectangle(snakeColour,
-                         new Rectangle(Snake[i].X * Settings.Width,
+                         new System.Drawing.Rectangle(Snake[i].X * Settings.Width,
                                        Snake[i].Y * Settings.Height,
-                                       Settings.Width - 1, Settings.Height - 1));
+                                       Settings.Width - 2, Settings.Height - 2));
                     }
 
 
                     canvas.FillRectangle(Brushes.DeepPink,
-                        new Rectangle(food.X * Settings.Width,
+                        new System.Drawing.Rectangle(food.X * Settings.Width,
                         food.Y * Settings.Height, Settings.Width, Settings.Height));
                 }
             }
@@ -320,7 +320,7 @@ namespace WFSnake
 
         private void Eat()
         {
-            Circle food = new Circle();
+            Rectangle food = new Rectangle();
             food.X = Snake[Snake.Count - 1].X;
             food.Y = Snake[Snake.Count - 1].Y;
 
@@ -336,7 +336,7 @@ namespace WFSnake
         {
             Settings.GameOver = true;
 
-            MessageBox.Show("Gotova igra \nTvoj rezultat je: " + Settings.Score + "\nPritisni ENTER za ponovo poceti.", "Probajte ponovo");
+            MessageBox.Show("Gotova igra \nTvoj rezultat je: " + Settings.Score + "\nPritisni dvaput ENTER za ponovo poceti.", "Probajte ponovo");
         }
 
         //private void Form1_KeyDown(object sender, KeyEventArgs e)

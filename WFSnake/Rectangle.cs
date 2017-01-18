@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace WFSnake
 {
-    class Circle
+    class Rectangle
     {
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Circle()
+        public Rectangle()
         {
             X = 0;
             Y = 0;
