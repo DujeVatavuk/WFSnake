@@ -57,22 +57,22 @@ namespace WFSnake
             if (e.Result.Text == "up")
             {
                 if (Settings.Direction != Direction.Down)
-                    Settings.Direction = Direction.Up;
+                    Input.ChangeState(Keys.Up, true);
             }
             else if (e.Result.Text == "down")
             {
                 if (Settings.Direction != Direction.Up)
-                    Settings.Direction = Direction.Down;
+                    Input.ChangeState(Keys.Down, true);
             }
             else if (e.Result.Text == "left")
             {
                 if (Settings.Direction != Direction.Right)
-                    Settings.Direction = Direction.Left;
+                    Input.ChangeState(Keys.Left, true);
             }
             else if (e.Result.Text == "right")
             {
                 if (Settings.Direction != Direction.Left)
-                    Settings.Direction = Direction.Right;
+                    Input.ChangeState(Keys.Right, true);
             }
         }
 
