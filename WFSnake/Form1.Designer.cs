@@ -127,13 +127,13 @@
             // 
             this.TBSpeed.BackColor = System.Drawing.SystemColors.Control;
             this.TBSpeed.Location = new System.Drawing.Point(744, 257);
-            this.TBSpeed.Maximum = 32;
-            this.TBSpeed.Minimum = 16;
+            this.TBSpeed.Maximum = 40;
+            this.TBSpeed.Minimum = 10;
             this.TBSpeed.Name = "TBSpeed";
             this.TBSpeed.Size = new System.Drawing.Size(203, 45);
             this.TBSpeed.TabIndex = 11;
             this.TBSpeed.TabStop = false;
-            this.TBSpeed.Value = 16;
+            this.TBSpeed.Value = 20;
             this.TBSpeed.Scroll += new System.EventHandler(this.TBSpeed_Scroll);
             // 
             // WallDisabledCheckBox

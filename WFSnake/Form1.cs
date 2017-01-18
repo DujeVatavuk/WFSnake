@@ -34,7 +34,7 @@ namespace WFSnake
             SpeechRecognitionEngine sRecognize = new SpeechRecognitionEngine();
 
             Choices sList = new Choices();
-            sList.Add(new string[] { "left", "up", "down", "right" });
+            sList.Add(new string[] { "left", "up", "down", "right", "exit", "restart" });
             Grammar gr = new Grammar(new GrammarBuilder(sList));
             try
             {
@@ -73,6 +73,14 @@ namespace WFSnake
             {
                 if (Settings.Direction != Direction.Left)
                     Input.ChangeState(Keys.Right, true);
+            }
+            else if (e.Result.Text == "exit")
+            {
+                Application.Exit();
+            }
+            else if (e.Result.Text == "restart")
+            {
+                Application.Restart();
             }
         }
 
