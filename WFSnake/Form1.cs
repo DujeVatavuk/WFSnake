@@ -109,7 +109,7 @@ namespace WFSnake
 
             Random random = new Random();
             food = new Rectangle();
-            /*A:
+            /*A: //Vise nije bitno
             a = random.Next(0, maxXPos);
             b = random.Next(0, maxYPos);
 
