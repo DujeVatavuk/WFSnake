@@ -23,7 +23,7 @@ namespace WFSnake
         private List<SnakeBlock> Snake = new List<SnakeBlock>();
         private SnakeBlock food = new SnakeBlock();
 
-        public Configuration Configuration = new Configuration();
+        public Configuration Configuration;
 
         public Form1() : base()
         {
@@ -32,65 +32,12 @@ namespace WFSnake
             ConfigurationController = new ConfigurationController();
 
 
-            new Configuration();
+            Configuration = new Configuration();
 
             gameTimer.Interval = 1000 / Configuration.Speed;
             gameTimer.Tick += UpdateScreen;
             gameTimer.Start();
-
-            SpeechSynthesizer sSynth = new SpeechSynthesizer();
-            PromptBuilder pBuilder = new PromptBuilder();
-            SpeechRecognitionEngine sRecognize = new SpeechRecognitionEngine();
-
-            Choices sList = new Choices();
-            sList.Add(new string[] { "left", "up", "down", "right", "exit", "restart" });
-            Grammar gr = new Grammar(new GrammarBuilder(sList));
-            try
-            {
-                sRecognize.RequestRecognizerUpdate();
-                sRecognize.LoadGrammar(gr);
-                sRecognize.SpeechRecognized += sRecognize_speechRecognized;
-                sRecognize.SetInputToDefaultAudioDevice();
-                sRecognize.RecognizeAsync(RecognizeMode.Multiple);
-            }
-            catch
-            {
-                return;
-            }
-
             //StartGame();
-        }
-
-        private void sRecognize_speechRecognized(object sender, SpeechRecognizedEventArgs e)
-        {
-            if (e.Result.Text == "up")
-            {
-                if (Configuration.Direction != Direction.Down)
-                    InputController.ChangeState(Keys.Up, true);
-            }
-            else if (e.Result.Text == "down")
-            {
-                if (Configuration.Direction != Direction.Up)
-                    InputController.ChangeState(Keys.Down, true);
-            }
-            else if (e.Result.Text == "left")
-            {
-                if (Configuration.Direction != Direction.Right)
-                    InputController.ChangeState(Keys.Left, true);
-            }
-            else if (e.Result.Text == "right")
-            {
-                if (Configuration.Direction != Direction.Left)
-                    InputController.ChangeState(Keys.Right, true);
-            }
-            else if (e.Result.Text == "exit")
-            {
-                Application.Exit();
-            }
-            else if (e.Result.Text == "restart")
-            {
-                Application.Restart();
-            }
         }
 
         private void StartGame()
