@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 using System.Windows.Forms;
 
-namespace WFSnake
+namespace WFSnake.Controllers
 {
-    class Input
+    class InputController
     {
         private static Hashtable keyTable = new Hashtable();
 

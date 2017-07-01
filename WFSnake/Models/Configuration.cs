@@ -4,16 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WFSnake
+namespace WFSnake.Models
 {
-    public enum Direction
-    {
-        Up,
-        Down,
-        Left,
-        Right
-    };
-    public class Settings
+    public class Configuration
     {
         public int Width { get; set; }
         public int Height { get; set; }
@@ -24,7 +17,7 @@ namespace WFSnake
         public Direction Direction { get; set; }
         public bool WallDisabled { get; set; }
 
-        public Settings()
+        public Configuration()
         {
             Width = 20;
             Height = 20;
@@ -35,14 +28,5 @@ namespace WFSnake
             Direction = Direction.Down;
             WallDisabled = true;
         }
-
-        public void NewGameSettings()
-        {
-            Score = 0;
-            Points = 100;
-            GameOver = false;
-            Direction = Direction.Down;
-        }
-
     }
 }

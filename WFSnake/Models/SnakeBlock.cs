@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WFSnake
+namespace WFSnake.Models
 {
-    class Rectangle
+    class SnakeBlock
     {
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Rectangle()
+        public SnakeBlock()
         {
             X = 0;
             Y = 0;
