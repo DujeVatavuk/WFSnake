@@ -55,7 +55,7 @@ namespace WFSnake.Controllers
 
                 MovePlayer();
             }
-            _gameForm.pbCanvas.Invalidate();
+            _gameForm.CanvasPictureBox.Invalidate();
         }
 
         public void StartGame()
@@ -66,7 +66,7 @@ namespace WFSnake.Controllers
             SnakeBlock head = new SnakeBlock { X = 10, Y = 5 };
             Snake.Add(head);
 
-            _gameForm.lblScore.Text = Configuration.Score.ToString();
+            _gameForm.ScoreLabel.Text = Configuration.Score.ToString();
             _gameForm.WallDisabledCheckBox.Checked = Configuration.WallDisabled;
 
             GenerateFood();
@@ -78,8 +78,8 @@ namespace WFSnake.Controllers
             int b = 0;
             int i = 0;
             bool T;
-            int maxXPos = _gameForm.pbCanvas.Size.Width / Configuration.Width;
-            int maxYPos = _gameForm.pbCanvas.Size.Height / Configuration.Height;
+            int maxXPos = _gameForm.CanvasPictureBox.Size.Width / Configuration.Width;
+            int maxYPos = _gameForm.CanvasPictureBox.Size.Height / Configuration.Height;
 
             Random random = new Random();
             food = new SnakeBlock();
@@ -126,8 +126,8 @@ namespace WFSnake.Controllers
                             break;
                     }
 
-                    int maxXPos = _gameForm.pbCanvas.Size.Width / Configuration.Width;
-                    int maxYPos = _gameForm.pbCanvas.Size.Height / Configuration.Height;
+                    int maxXPos = _gameForm.CanvasPictureBox.Size.Width / Configuration.Width;
+                    int maxYPos = _gameForm.CanvasPictureBox.Size.Height / Configuration.Height;
 
                     // Granice
                     if (!Configuration.WallDisabled)
@@ -190,7 +190,7 @@ namespace WFSnake.Controllers
             Snake.Add(food);
 
             Configuration.Score += Configuration.Points;
-            _gameForm.lblScore.Text = Configuration.Score.ToString();
+            _gameForm.ScoreLabel.Text = Configuration.Score.ToString();
 
             GenerateFood();
         }

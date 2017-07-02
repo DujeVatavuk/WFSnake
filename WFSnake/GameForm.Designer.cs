@@ -29,119 +29,119 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pbCanvas = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblScore = new System.Windows.Forms.Label();
+            this.CanvasPictureBox = new System.Windows.Forms.PictureBox();
+            this.RezultLabel = new System.Windows.Forms.Label();
+            this.ScoreLabel = new System.Windows.Forms.Label();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
-            this.SnkUp = new System.Windows.Forms.Button();
-            this.SnkDown = new System.Windows.Forms.Button();
-            this.SnkLeft = new System.Windows.Forms.Button();
-            this.SnkRight = new System.Windows.Forms.Button();
-            this.TBSpeed = new System.Windows.Forms.TrackBar();
+            this.SnakeUpButton = new System.Windows.Forms.Button();
+            this.SnakeDownButton = new System.Windows.Forms.Button();
+            this.SnakeLeftButton = new System.Windows.Forms.Button();
+            this.SnakeRightButton = new System.Windows.Forms.Button();
+            this.SpeedTrackBar = new System.Windows.Forms.TrackBar();
             this.WallDisabledCheckBox = new System.Windows.Forms.CheckBox();
             this.StartButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TBSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CanvasPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
-            // pbCanvas
+            // CanvasPictureBox
             // 
-            this.pbCanvas.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.pbCanvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbCanvas.Location = new System.Drawing.Point(17, 16);
-            this.pbCanvas.Margin = new System.Windows.Forms.Padding(4);
-            this.pbCanvas.Name = "pbCanvas";
-            this.pbCanvas.Size = new System.Drawing.Size(533, 492);
-            this.pbCanvas.TabIndex = 0;
-            this.pbCanvas.TabStop = false;
-            this.pbCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCanvas_Paint);
+            this.CanvasPictureBox.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.CanvasPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CanvasPictureBox.Location = new System.Drawing.Point(17, 16);
+            this.CanvasPictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.CanvasPictureBox.Name = "CanvasPictureBox";
+            this.CanvasPictureBox.Size = new System.Drawing.Size(533, 492);
+            this.CanvasPictureBox.TabIndex = 0;
+            this.CanvasPictureBox.TabStop = false;
+            this.CanvasPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.CanvasPictureBox_Paint);
             // 
-            // label1
+            // RezultLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(589, 16);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 46);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Rezultat:";
+            this.RezultLabel.AutoSize = true;
+            this.RezultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.RezultLabel.Location = new System.Drawing.Point(589, 16);
+            this.RezultLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.RezultLabel.Name = "RezultLabel";
+            this.RezultLabel.Size = new System.Drawing.Size(177, 46);
+            this.RezultLabel.TabIndex = 1;
+            this.RezultLabel.Text = "Rezultat:";
             // 
-            // lblScore
+            // ScoreLabel
             // 
-            this.lblScore.AutoSize = true;
-            this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblScore.Location = new System.Drawing.Point(787, 16);
-            this.lblScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(0, 46);
-            this.lblScore.TabIndex = 2;
+            this.ScoreLabel.AutoSize = true;
+            this.ScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ScoreLabel.Location = new System.Drawing.Point(787, 16);
+            this.ScoreLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ScoreLabel.Name = "ScoreLabel";
+            this.ScoreLabel.Size = new System.Drawing.Size(0, 46);
+            this.ScoreLabel.TabIndex = 2;
             // 
-            // SnkUp
+            // SnakeUpButton
             // 
-            this.SnkUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SnkUp.Location = new System.Drawing.Point(695, 316);
-            this.SnkUp.Margin = new System.Windows.Forms.Padding(4);
-            this.SnkUp.Name = "SnkUp";
-            this.SnkUp.Size = new System.Drawing.Size(100, 92);
-            this.SnkUp.TabIndex = 4;
-            this.SnkUp.TabStop = false;
-            this.SnkUp.Text = "▲";
-            this.SnkUp.UseVisualStyleBackColor = true;
-            this.SnkUp.Click += new System.EventHandler(this.SnkUp_Click);
+            this.SnakeUpButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SnakeUpButton.Location = new System.Drawing.Point(695, 316);
+            this.SnakeUpButton.Margin = new System.Windows.Forms.Padding(4);
+            this.SnakeUpButton.Name = "SnakeUpButton";
+            this.SnakeUpButton.Size = new System.Drawing.Size(100, 92);
+            this.SnakeUpButton.TabIndex = 4;
+            this.SnakeUpButton.TabStop = false;
+            this.SnakeUpButton.Text = "▲";
+            this.SnakeUpButton.UseVisualStyleBackColor = true;
+            this.SnakeUpButton.Click += new System.EventHandler(this.SnakeUpButton_Click);
             // 
-            // SnkDown
+            // SnakeDownButton
             // 
-            this.SnkDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SnkDown.Location = new System.Drawing.Point(695, 416);
-            this.SnkDown.Margin = new System.Windows.Forms.Padding(4);
-            this.SnkDown.Name = "SnkDown";
-            this.SnkDown.Size = new System.Drawing.Size(100, 92);
-            this.SnkDown.TabIndex = 5;
-            this.SnkDown.TabStop = false;
-            this.SnkDown.Text = "▼";
-            this.SnkDown.UseVisualStyleBackColor = true;
-            this.SnkDown.Click += new System.EventHandler(this.SnkDown_Click);
+            this.SnakeDownButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SnakeDownButton.Location = new System.Drawing.Point(695, 416);
+            this.SnakeDownButton.Margin = new System.Windows.Forms.Padding(4);
+            this.SnakeDownButton.Name = "SnakeDownButton";
+            this.SnakeDownButton.Size = new System.Drawing.Size(100, 92);
+            this.SnakeDownButton.TabIndex = 5;
+            this.SnakeDownButton.TabStop = false;
+            this.SnakeDownButton.Text = "▼";
+            this.SnakeDownButton.UseVisualStyleBackColor = true;
+            this.SnakeDownButton.Click += new System.EventHandler(this.SnakeDownButton_Click);
             // 
-            // SnkLeft
+            // SnakeLeftButton
             // 
-            this.SnkLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SnkLeft.Location = new System.Drawing.Point(587, 416);
-            this.SnkLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.SnkLeft.Name = "SnkLeft";
-            this.SnkLeft.Size = new System.Drawing.Size(100, 92);
-            this.SnkLeft.TabIndex = 6;
-            this.SnkLeft.TabStop = false;
-            this.SnkLeft.Text = "◀";
-            this.SnkLeft.UseVisualStyleBackColor = true;
-            this.SnkLeft.Click += new System.EventHandler(this.SnkLeft_Click);
+            this.SnakeLeftButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SnakeLeftButton.Location = new System.Drawing.Point(587, 416);
+            this.SnakeLeftButton.Margin = new System.Windows.Forms.Padding(4);
+            this.SnakeLeftButton.Name = "SnakeLeftButton";
+            this.SnakeLeftButton.Size = new System.Drawing.Size(100, 92);
+            this.SnakeLeftButton.TabIndex = 6;
+            this.SnakeLeftButton.TabStop = false;
+            this.SnakeLeftButton.Text = "◀";
+            this.SnakeLeftButton.UseVisualStyleBackColor = true;
+            this.SnakeLeftButton.Click += new System.EventHandler(this.SnakeLeftButton_Click);
             // 
-            // SnkRight
+            // SnakeRightButton
             // 
-            this.SnkRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SnkRight.Location = new System.Drawing.Point(803, 416);
-            this.SnkRight.Margin = new System.Windows.Forms.Padding(4);
-            this.SnkRight.Name = "SnkRight";
-            this.SnkRight.Size = new System.Drawing.Size(100, 92);
-            this.SnkRight.TabIndex = 7;
-            this.SnkRight.TabStop = false;
-            this.SnkRight.Text = "▶";
-            this.SnkRight.UseVisualStyleBackColor = true;
-            this.SnkRight.Click += new System.EventHandler(this.SnkRight_Click);
+            this.SnakeRightButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SnakeRightButton.Location = new System.Drawing.Point(803, 416);
+            this.SnakeRightButton.Margin = new System.Windows.Forms.Padding(4);
+            this.SnakeRightButton.Name = "SnakeRightButton";
+            this.SnakeRightButton.Size = new System.Drawing.Size(100, 92);
+            this.SnakeRightButton.TabIndex = 7;
+            this.SnakeRightButton.TabStop = false;
+            this.SnakeRightButton.Text = "▶";
+            this.SnakeRightButton.UseVisualStyleBackColor = true;
+            this.SnakeRightButton.Click += new System.EventHandler(this.SnakeRightButton_Click);
             // 
-            // TBSpeed
+            // SpeedTrackBar
             // 
-            this.TBSpeed.BackColor = System.Drawing.SystemColors.Control;
-            this.TBSpeed.Location = new System.Drawing.Point(992, 316);
-            this.TBSpeed.Margin = new System.Windows.Forms.Padding(4);
-            this.TBSpeed.Maximum = 40;
-            this.TBSpeed.Minimum = 10;
-            this.TBSpeed.Name = "TBSpeed";
-            this.TBSpeed.Size = new System.Drawing.Size(271, 56);
-            this.TBSpeed.TabIndex = 11;
-            this.TBSpeed.TabStop = false;
-            this.TBSpeed.Value = 20;
-            this.TBSpeed.Scroll += new System.EventHandler(this.TBSpeed_Scroll);
+            this.SpeedTrackBar.BackColor = System.Drawing.SystemColors.Control;
+            this.SpeedTrackBar.Location = new System.Drawing.Point(992, 316);
+            this.SpeedTrackBar.Margin = new System.Windows.Forms.Padding(4);
+            this.SpeedTrackBar.Maximum = 40;
+            this.SpeedTrackBar.Minimum = 10;
+            this.SpeedTrackBar.Name = "SpeedTrackBar";
+            this.SpeedTrackBar.Size = new System.Drawing.Size(271, 56);
+            this.SpeedTrackBar.TabIndex = 11;
+            this.SpeedTrackBar.TabStop = false;
+            this.SpeedTrackBar.Value = 20;
+            this.SpeedTrackBar.Scroll += new System.EventHandler(this.SpeedTrackBar_Scroll);
             // 
             // WallDisabledCheckBox
             // 
@@ -176,38 +176,38 @@
             this.ClientSize = new System.Drawing.Size(1476, 526);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.WallDisabledCheckBox);
-            this.Controls.Add(this.TBSpeed);
-            this.Controls.Add(this.SnkRight);
-            this.Controls.Add(this.SnkLeft);
-            this.Controls.Add(this.SnkDown);
-            this.Controls.Add(this.SnkUp);
-            this.Controls.Add(this.lblScore);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pbCanvas);
+            this.Controls.Add(this.SpeedTrackBar);
+            this.Controls.Add(this.SnakeRightButton);
+            this.Controls.Add(this.SnakeLeftButton);
+            this.Controls.Add(this.SnakeDownButton);
+            this.Controls.Add(this.SnakeUpButton);
+            this.Controls.Add(this.ScoreLabel);
+            this.Controls.Add(this.RezultLabel);
+            this.Controls.Add(this.CanvasPictureBox);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "GameForm";
             this.Text = "Zmija";
-            ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TBSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CanvasPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button SnkUp;
-        private System.Windows.Forms.Button SnkDown;
-        private System.Windows.Forms.Button SnkLeft;
-        private System.Windows.Forms.Button SnkRight;
+        private System.Windows.Forms.Label RezultLabel;
+        private System.Windows.Forms.Button SnakeUpButton;
+        private System.Windows.Forms.Button SnakeDownButton;
+        private System.Windows.Forms.Button SnakeLeftButton;
+        private System.Windows.Forms.Button SnakeRightButton;
         private System.Windows.Forms.Button StartButton;
 
         public System.Windows.Forms.Timer GameTimer;
-        public System.Windows.Forms.PictureBox pbCanvas;
-        public System.Windows.Forms.Label lblScore;
+        public System.Windows.Forms.PictureBox CanvasPictureBox;
+        public System.Windows.Forms.Label ScoreLabel;
         public System.Windows.Forms.CheckBox WallDisabledCheckBox;
-        public System.Windows.Forms.TrackBar TBSpeed;
+        public System.Windows.Forms.TrackBar SpeedTrackBar;
     }
 }
 

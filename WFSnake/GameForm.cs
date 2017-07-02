@@ -25,27 +25,27 @@ namespace WFSnake
             GameController = new GameController(this);
         }
 
-        private void SnkUp_Click(object sender, EventArgs e)
+        private void SnakeUpButton_Click(object sender, EventArgs e)
         {
             GameController.MoveUp();
         }
 
-        private void SnkDown_Click(object sender, EventArgs e)
+        private void SnakeDownButton_Click(object sender, EventArgs e)
         {
             GameController.MoveDown();
         }
 
-        private void SnkLeft_Click(object sender, EventArgs e)
+        private void SnakeLeftButton_Click(object sender, EventArgs e)
         {
             GameController.MoveLeft();
         }
 
-        private void SnkRight_Click(object sender, EventArgs e)
+        private void SnakeRightButton_Click(object sender, EventArgs e)
         {
             GameController.MoveRight();
         }
 
-        private void pbCanvas_Paint(object sender, PaintEventArgs e)
+        private void CanvasPictureBox_Paint(object sender, PaintEventArgs e)
         {
             GameController.DrawSnake(e.Graphics);
         }
@@ -62,9 +62,9 @@ namespace WFSnake
             }
         }
 
-        private void TBSpeed_Scroll(object sender, EventArgs e)
+        private void SpeedTrackBar_Scroll(object sender, EventArgs e)
         {
-            GameController.SetSpeed(TBSpeed.Value);
+            GameController.SetSpeed(SpeedTrackBar.Value);
         }
 
         private void WallEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
