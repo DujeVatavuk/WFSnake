@@ -58,6 +58,7 @@
       <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\BuildingBlock.cs" />
+    <Compile Include="Models\BuildingBlockType.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\Direction.cs" />
     <Compile Include="Models\Food.cs" />

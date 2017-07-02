@@ -26,7 +26,7 @@ namespace WFSnake.Models
             _configuration = configuration;
             _snake = new List<BuildingBlock>();
 
-            BuildingBlock head = new BuildingBlock { X = 10, Y = 5 };
+            BuildingBlock head = new BuildingBlock { X = 10, Y = 5, Type = BuildingBlockType.SnakeHead};
             _snake.Add(head);
         }
 
@@ -112,6 +112,7 @@ namespace WFSnake.Models
             BuildingBlock foodBuildingBlock = new BuildingBlock();
             foodBuildingBlock.X = _snake[_snake.Count - 1].X;
             foodBuildingBlock.Y = _snake[_snake.Count - 1].Y;
+            foodBuildingBlock.Type = BuildingBlockType.SnakeTail;
 
             _snake.Add(foodBuildingBlock);
 

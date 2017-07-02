@@ -61,7 +61,7 @@ namespace WFSnake.Controllers
 
         private void _DrawSnakeHead(int i)
         {
-            _canvas.FillRectangle(Brushes.DimGray,
+            _canvas.FillRectangle(_snake.GetBuildingBlocks[i].GetColor(),
                 new Rectangle(_snake.GetBuildingBlocks[i].X * _configuration.Width,
                               _snake.GetBuildingBlocks[i].Y * _configuration.Height,
                               _configuration.Width,
@@ -70,7 +70,7 @@ namespace WFSnake.Controllers
 
         private void _DrawSnakeTail(int i)
         {
-            _canvas.FillRectangle(Brushes.Turquoise,
+            _canvas.FillRectangle(_snake.GetBuildingBlocks[i].GetColor(),
                  new Rectangle(_snake.GetBuildingBlocks[i].X * _configuration.Width,
                                _snake.GetBuildingBlocks[i].Y * _configuration.Height,
                                _configuration.Width - 2,
@@ -79,7 +79,7 @@ namespace WFSnake.Controllers
 
         private void _DrawFood()
         {
-            _canvas.FillRectangle(Brushes.DeepPink,
+            _canvas.FillRectangle(_food.GetBuildingBlock.GetColor(),
                 new Rectangle(_food.GetBuildingBlock.X * _configuration.Width,
                                 _food.GetBuildingBlock.Y * _configuration.Height,
                                 _configuration.Width,

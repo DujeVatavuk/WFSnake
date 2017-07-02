@@ -32,6 +32,7 @@ namespace WFSnake.Models
 
             Random random = new Random();
             _food = new BuildingBlock();
+            _food.Type = BuildingBlockType.Food;
 
             int _maxXPos = _configuration.MaxXPos;
             int _maxYPos = _configuration.MaxYPos;
