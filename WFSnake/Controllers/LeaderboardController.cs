@@ -12,6 +12,7 @@ namespace WFSnake.Controllers
     public class LeaderboardController
     {
         public PlayerForm PlayerForm { get; set; }
+
         private Leaderboard _leaderboard;
         private RespositoryController _respositoryController;
 
@@ -48,18 +49,5 @@ namespace WFSnake.Controllers
             PlayerForm.NickTextBox.Text = GetNick();
             PlayerForm.LeaderboardDataGridView.DataSource = _leaderboard.GetLeaderboard();
         }
-
-        public PlayerForm GetPlayerForm()
-        {
-            if (PlayerForm == null)
-            {
-                PlayerForm = new PlayerForm(this)
-                {
-                    FormBorderStyle = FormBorderStyle.FixedDialog,
-                    StartPosition = FormStartPosition.CenterScreen
-                };
-            }
-            return PlayerForm;
-        } 
     }
 }

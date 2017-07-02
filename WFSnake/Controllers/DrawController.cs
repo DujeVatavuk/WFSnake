@@ -50,7 +50,7 @@ namespace WFSnake.Controllers
             {
                 if (i == 0)
                 {
-                    _DrawSnakeHead(i);
+                    _DrawSnakeHead();
                 }
                 else
                 {
@@ -59,11 +59,11 @@ namespace WFSnake.Controllers
             }
         }
 
-        private void _DrawSnakeHead(int i)
+        private void _DrawSnakeHead()
         {
-            _canvas.FillRectangle(_snake.GetBuildingBlocks[i].GetColor(),
-                new Rectangle(_snake.GetBuildingBlocks[i].X * _configuration.Width,
-                              _snake.GetBuildingBlocks[i].Y * _configuration.Height,
+            _canvas.FillRectangle(_snake.GetBuildingBlocks[0].GetColor(),
+                new Rectangle(_snake.GetBuildingBlocks[0].X * _configuration.Width,
+                              _snake.GetBuildingBlocks[0].Y * _configuration.Height,
                               _configuration.Width,
                               _configuration.Height));
         }

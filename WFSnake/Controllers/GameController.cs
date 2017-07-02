@@ -17,7 +17,6 @@ namespace WFSnake.Controllers
         private LeaderboardController _leaderboardController;
         private Snake _snake;
         private Food _food;
-        private Player _player;
 
         public GameController(GameForm gameForm)
         {
@@ -37,7 +36,7 @@ namespace WFSnake.Controllers
         {
             _gameForm.GameTimer.Stop();
 
-            PlayerForm playerForm = _leaderboardController.GetPlayerForm();
+            PlayerForm playerForm = _GetPlayerForm(_leaderboardController);
             if (playerForm.ShowDialog() == DialogResult.OK)
             {
                 _configuration.NewGameConfiguration();
@@ -141,6 +140,19 @@ namespace WFSnake.Controllers
             }
 
             _gameForm.CanvasPictureBox.Invalidate();
+        }
+
+        private PlayerForm _GetPlayerForm(LeaderboardController _leaderboardController)
+        {
+            if (_leaderboardController.PlayerForm == null)
+            {
+                _leaderboardController.PlayerForm = new PlayerForm(_leaderboardController)
+                {
+                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+            }
+            return _leaderboardController.PlayerForm;
         }
     }
 }
