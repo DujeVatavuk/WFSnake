@@ -14,8 +14,10 @@ namespace WFSnake.Controllers
         private GameForm _gameForm;
         private Configuration _configuration;
         private DrawController _drawController;
+        private LeaderboardController _leaderboardController;
         private Snake _snake;
         private Food _food;
+        private Player _player;
 
         public GameController(GameForm gameForm)
         {
@@ -25,21 +27,29 @@ namespace WFSnake.Controllers
 
             _drawController = new DrawController(_configuration);
 
+            _leaderboardController = new LeaderboardController();
+
             _gameForm.GameTimer.Interval = 1000 / _configuration.Speed;
             _gameForm.GameTimer.Tick += _UpdateScreen;
         }
 
         public void StartGame()
         {
-            _configuration.NewGameConfiguration();
+            _gameForm.GameTimer.Stop();
 
-            _gameForm.ScoreLabel.Text = _configuration.Score.ToString();
-            _gameForm.WallDisabledCheckBox.Checked = _configuration.WallDisabled;
+            PlayerForm playerForm = _leaderboardController.GetPlayerForm();
+            if (playerForm.ShowDialog() == DialogResult.OK)
+            {
+                _configuration.NewGameConfiguration();
 
-            _snake = new Snake(_configuration);
-            _food = new Food(_configuration, _snake);
+                _gameForm.ScoreLabel.Text = _configuration.Score.ToString();
+                _gameForm.WallDisabledCheckBox.Checked = _configuration.WallDisabled;
 
-            _gameForm.GameTimer.Start();
+                _snake = new Snake(_configuration);
+                _food = new Food(_configuration, _snake);
+
+                _gameForm.GameTimer.Start();
+            }
         }
 
         public void MoveUp()
@@ -124,7 +134,9 @@ namespace WFSnake.Controllers
 
             if (_configuration.GameOver)
             {
+                _leaderboardController.AddScore(_configuration.Score);
                 MessageBox.Show(string.Format("Gotova igra \nTvoj rezultat je: {0}\nPritisni dvaput ENTER za ponovo poćeti.", _configuration.Score), "Probajte ponovo");
+                StartGame();
             }
 
             _gameForm.CanvasPictureBox.Invalidate();
