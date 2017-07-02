@@ -21,22 +21,22 @@ namespace WFSnake
             InitializeComponent();
 
             _leaderboardController = leaderboardController;
-            _leaderboardController.SetLeadeboard();
+            _leaderboardController.SetControls();
         }
 
         private void StartButton_Click(object sender, EventArgs e)
         {
             string nick = NickTextBox.Text.Trim();
-            if (string.IsNullOrEmpty(nick))
-            {
-                nick = "Player1";
-            }
+            //if (string.IsNullOrEmpty(nick))
+            //{
+            //    nick = "Player1";
+            //}
             _leaderboardController.SetPlayer(nick);
         }
 
         private void PlayerForm_Shown(object sender, EventArgs e)
         {
-            _leaderboardController.SetLeadeboard();
+            _leaderboardController.SetControls();
         }
     }
 }

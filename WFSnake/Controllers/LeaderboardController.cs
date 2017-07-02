@@ -21,33 +21,20 @@ namespace WFSnake.Controllers
 
         public void Load()
         {
-            //_leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick1", Score = 1000 });
-            //_leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick2", Score = 2000 });
-            //_leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick3", Score = 3000 });
-            //_leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick4", Score = 4000 });
-            //_leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick5", Score = 5000 });
-            //_leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick6", Score = 6000 });
-            //_leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick7", Score = 7000 });
-            SetPlayer("Nick1");
-            AddScore(1000);
-            SetPlayer("Nick2");
-            AddScore(2000);
-            SetPlayer("Nick3");
-            AddScore(3000);
-            SetPlayer("Nick4");
-            AddScore(4000);
-            SetPlayer("Nick5");
-            AddScore(5000);
-            SetPlayer("Nick6");
-            AddScore(6000);
-            SetPlayer("Nick7");
-            AddScore(7000);
-            SetLeadeboard();
+            _leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick1", Score = 100 });
+            _leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick2", Score = 200 });
+            _leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick3", Score = 300 });
+            _leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick4", Score = 400 });
+            _leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick5", Score = 500 });
+            _leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick6", Score = 600 });
+            _leaderboard.Players.Add(new Player { Rank = 999, Nick = "Nick7", Score = 700 });
         }
 
         public void SetPlayer(string nick)
         {
             _leaderboard.SetCurrentPlayer(nick);
+            Properties.Settings.Default["Nick"] = nick;
+            Properties.Settings.Default.Save();
         }
 
         public void AddScore(int score)
@@ -55,12 +42,13 @@ namespace WFSnake.Controllers
             _leaderboard.AddScore(score);
         }
 
-        public void SetLeadeboard()
+        public void SetControls()
         {
             if (PlayerForm == null)
             {
                 return;
             }
+            PlayerForm.NickTextBox.Text = Properties.Settings.Default["Nick"].ToString();
             PlayerForm.LeaderboardDataGridView.DataSource = _leaderboard.GetLeaderboard();
         }
 

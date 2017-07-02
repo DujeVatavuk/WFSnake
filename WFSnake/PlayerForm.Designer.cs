@@ -51,7 +51,6 @@
             this.NickTextBox.Name = "NickTextBox";
             this.NickTextBox.Size = new System.Drawing.Size(330, 22);
             this.NickTextBox.TabIndex = 1;
-            this.NickTextBox.Text = "Player1";
             // 
             // LeaderboardDataGridView
             // 
@@ -100,8 +99,8 @@
         #endregion
 
         private System.Windows.Forms.Label NickLabel;
-        private System.Windows.Forms.TextBox NickTextBox;
         private System.Windows.Forms.Button StartButton;
         public System.Windows.Forms.DataGridView LeaderboardDataGridView;
+        public System.Windows.Forms.TextBox NickTextBox;
     }
 }
