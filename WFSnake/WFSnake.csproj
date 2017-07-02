@@ -52,6 +52,7 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\InputController.cs" />
     <Compile Include="Controllers\LeaderboardController.cs" />
+    <Compile Include="Controllers\RespositoryController.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
