@@ -40,6 +40,8 @@
             this.SpeedTrackBar = new System.Windows.Forms.TrackBar();
             this.WallDisabledCheckBox = new System.Windows.Forms.CheckBox();
             this.StartButton = new System.Windows.Forms.Button();
+            this.NickLabel = new System.Windows.Forms.Label();
+            this.PlayerLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CanvasPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -169,11 +171,34 @@
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
+            // NickLabel
+            // 
+            this.NickLabel.AutoSize = true;
+            this.NickLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.NickLabel.Location = new System.Drawing.Point(787, 86);
+            this.NickLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.NickLabel.Name = "NickLabel";
+            this.NickLabel.Size = new System.Drawing.Size(0, 46);
+            this.NickLabel.TabIndex = 15;
+            // 
+            // PlayerLabel
+            // 
+            this.PlayerLabel.AutoSize = true;
+            this.PlayerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.PlayerLabel.Location = new System.Drawing.Point(589, 86);
+            this.PlayerLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.PlayerLabel.Name = "PlayerLabel";
+            this.PlayerLabel.Size = new System.Drawing.Size(119, 46);
+            this.PlayerLabel.TabIndex = 14;
+            this.PlayerLabel.Text = "Igrač:";
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1476, 526);
+            this.Controls.Add(this.NickLabel);
+            this.Controls.Add(this.PlayerLabel);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.WallDisabledCheckBox);
             this.Controls.Add(this.SpeedTrackBar);
@@ -208,6 +233,8 @@
         public System.Windows.Forms.Label ScoreLabel;
         public System.Windows.Forms.CheckBox WallDisabledCheckBox;
         public System.Windows.Forms.TrackBar SpeedTrackBar;
+        public System.Windows.Forms.Label NickLabel;
+        private System.Windows.Forms.Label PlayerLabel;
     }
 }
 

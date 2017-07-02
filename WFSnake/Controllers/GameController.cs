@@ -131,6 +131,7 @@ namespace WFSnake.Controllers
 
             _snake.MoveSnake(_food);
             _gameForm.ScoreLabel.Text = _configuration.Score.ToString();
+            _gameForm.NickLabel.Text = _leaderboardController.GetNick();
 
             if (_configuration.GameOver)
             {

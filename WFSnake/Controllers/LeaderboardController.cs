@@ -34,13 +34,18 @@ namespace WFSnake.Controllers
             _respositoryController.SaveLeaderboard(_leaderboard);
         }
 
+        public string GetNick()
+        {
+            return _respositoryController.LoadNick();
+        }
+
         public void SetControls()
         {
             if (PlayerForm == null)
             {
                 return;
             }
-            PlayerForm.NickTextBox.Text = _respositoryController.LoadNick();
+            PlayerForm.NickTextBox.Text = GetNick();
             PlayerForm.LeaderboardDataGridView.DataSource = _leaderboard.GetLeaderboard();
         }
 
