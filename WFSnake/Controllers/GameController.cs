@@ -12,199 +12,41 @@ namespace WFSnake.Controllers
     public class GameController
     {
         private GameForm _gameForm;
-        private Configuration Configuration;
-        private ConfigurationController ConfigurationController;
-
-        private List<SnakeBlock> Snake = new List<SnakeBlock>();
-        private SnakeBlock food = new SnakeBlock();
+        private Configuration _configuration;
+        private ConfigurationController _configurationController;
+        private List<SnakeBlock> _snake = new List<SnakeBlock>();
+        private SnakeBlock _food = new SnakeBlock();
 
         public GameController(GameForm gameForm)
         {
             _gameForm = gameForm;
 
-            ConfigurationController = new ConfigurationController();
+            _configurationController = new ConfigurationController();
 
-            Configuration = new Configuration();
+            _configuration = new Configuration();
 
-            _gameForm.GameTimer.Interval = 1000 / Configuration.Speed;
-            _gameForm.GameTimer.Tick += UpdateScreen;
+            _gameForm.GameTimer.Interval = 1000 / _configuration.Speed;
+            _gameForm.GameTimer.Tick += _UpdateScreen;
             _gameForm.GameTimer.Start();
-        }
-
-        private void UpdateScreen(object sender, EventArgs e)
-        {
-            if (InputController.KeyPressed(Keys.Enter))
-            {
-                StartGame();
-            }
-            else
-            {
-                if (Configuration.GameOver)
-                {
-                    return;
-                }
-
-                if (InputController.KeyPressed(Keys.Right) && Configuration.Direction != Direction.Left)
-                    Configuration.Direction = Direction.Right;
-                else if (InputController.KeyPressed(Keys.Left) && Configuration.Direction != Direction.Right)
-                    Configuration.Direction = Direction.Left;
-                else if (InputController.KeyPressed(Keys.Up) && Configuration.Direction != Direction.Down)
-                    Configuration.Direction = Direction.Up;
-                else if (InputController.KeyPressed(Keys.Down) && Configuration.Direction != Direction.Up)
-                    Configuration.Direction = Direction.Down;
-
-                MovePlayer();
-            }
-            _gameForm.CanvasPictureBox.Invalidate();
         }
 
         public void StartGame()
         {
-            Configuration = ConfigurationController.NewGameConfiguration(Configuration);
+            _configuration = _configurationController.NewGameConfiguration(_configuration);
 
-            Snake.Clear();
+            _snake.Clear();
             SnakeBlock head = new SnakeBlock { X = 10, Y = 5 };
-            Snake.Add(head);
+            _snake.Add(head);
 
-            _gameForm.ScoreLabel.Text = Configuration.Score.ToString();
-            _gameForm.WallDisabledCheckBox.Checked = Configuration.WallDisabled;
+            _gameForm.ScoreLabel.Text = _configuration.Score.ToString();
+            _gameForm.WallDisabledCheckBox.Checked = _configuration.WallDisabled;
 
-            GenerateFood();
-        }
-
-        private void GenerateFood()
-        {
-            int a = 0;
-            int b = 0;
-            int i = 0;
-            bool T;
-            int maxXPos = _gameForm.CanvasPictureBox.Size.Width / Configuration.Width;
-            int maxYPos = _gameForm.CanvasPictureBox.Size.Height / Configuration.Height;
-
-            Random random = new Random();
-            food = new SnakeBlock();
-
-            do
-            {
-                T = false;
-                a = random.Next(0, maxXPos);
-                b = random.Next(0, maxYPos);
-
-                for (i = 0; i < Snake.Count; i++)
-                {
-                    if (a == Snake[i].X && b == Snake[i].Y)
-                    {
-                        T = true;
-                        break;
-                    }
-                }
-            } while (T);
-
-            food.X = a;
-            food.Y = b;
-        }
-
-        private void MovePlayer()
-        {
-            for (int i = Snake.Count - 1; i >= 0; i--)
-            {
-                if (i == 0)
-                {
-                    switch (Configuration.Direction)
-                    {
-                        case Direction.Right:
-                            Snake[i].X++;
-                            break;
-                        case Direction.Left:
-                            Snake[i].X--;
-                            break;
-                        case Direction.Up:
-                            Snake[i].Y--;
-                            break;
-                        case Direction.Down:
-                            Snake[i].Y++;
-                            break;
-                    }
-
-                    int maxXPos = _gameForm.CanvasPictureBox.Size.Width / Configuration.Width;
-                    int maxYPos = _gameForm.CanvasPictureBox.Size.Height / Configuration.Height;
-
-                    // Granice
-                    if (!Configuration.WallDisabled)
-                    {
-                        if (Snake[i].X < 0 || Snake[i].Y < 0 || Snake[i].X > maxXPos || Snake[i].Y > maxYPos)
-                        {
-                            Die();
-                        }
-                    }
-                    else
-                    {
-                        if (Snake[i].X < 0)
-                        {
-                            Snake[i].X = maxXPos;
-                        }
-                        else if (Snake[i].Y < 0)
-                        {
-                            Snake[i].Y = maxYPos;
-                        }
-                        else if (Snake[i].X >= maxXPos)
-                        {
-                            Snake[i].X = 0;
-                        }
-                        else if (Snake[i].Y >= maxYPos)
-                        {
-                            Snake[i].Y = 0;
-                        }
-                    }
-
-                    // Sama sa sobom
-                    for (int j = 1; j < Snake.Count; j++)
-                    {
-                        if (Snake[i].X == Snake[j].X && Snake[i].Y == Snake[j].Y)
-                        {
-                            Die();
-                        }
-                    }
-
-                    // Ji spizu
-                    if (Snake[0].X == food.X && Snake[0].Y == food.Y)
-                    {
-                        Eat();
-                    }
-
-                }
-                else
-                {
-                    Snake[i].X = Snake[i - 1].X;
-                    Snake[i].Y = Snake[i - 1].Y;
-                }
-            }
-        }
-
-        private void Eat()
-        {
-            SnakeBlock food = new SnakeBlock();
-            food.X = Snake[Snake.Count - 1].X;
-            food.Y = Snake[Snake.Count - 1].Y;
-
-            Snake.Add(food);
-
-            Configuration.Score += Configuration.Points;
-            _gameForm.ScoreLabel.Text = Configuration.Score.ToString();
-
-            GenerateFood();
-        }
-
-        private void Die()
-        {
-            Configuration.GameOver = true;
-
-            MessageBox.Show("Gotova igra \nTvoj rezultat je: " + Configuration.Score + "\nPritisni dvaput ENTER za ponovo poceti.", "Probajte ponovo");
+            _GenerateFood();
         }
 
         public void MoveUp()
         {
-            if (Configuration.Direction != Direction.Down)
+            if (_configuration.Direction != Direction.Down)
             {
                 InputController.ChangeState(Keys.Up, true);
             }
@@ -212,7 +54,7 @@ namespace WFSnake.Controllers
 
         public void MoveDown()
         {
-            if (Configuration.Direction != Direction.Up)
+            if (_configuration.Direction != Direction.Up)
             {
                 InputController.ChangeState(Keys.Down, true);
             }
@@ -220,7 +62,7 @@ namespace WFSnake.Controllers
 
         public void MoveLeft()
         {
-            if (Configuration.Direction != Direction.Right)
+            if (_configuration.Direction != Direction.Right)
             {
                 InputController.ChangeState(Keys.Left, true);
             }
@@ -228,7 +70,7 @@ namespace WFSnake.Controllers
 
         public void MoveRight()
         {
-            if (Configuration.Direction != Direction.Left)
+            if (_configuration.Direction != Direction.Left)
             {
                 InputController.ChangeState(Keys.Right, true);
             }
@@ -236,34 +78,34 @@ namespace WFSnake.Controllers
 
         public void DrawSnake(Graphics canvas)
         {
-            if (!Configuration.GameOver)
+            if (!_configuration.GameOver)
             {
                 Brush snakeColour;
 
-                for (int i = 0; i < Snake.Count; i++)
+                for (int i = 0; i < _snake.Count; i++)
                 {
                     if (i == 0)
                     {
                         snakeColour = Brushes.DimGray;
 
                         canvas.FillRectangle(snakeColour,
-                        new Rectangle(Snake[i].X * Configuration.Width,
-                                      Snake[i].Y * Configuration.Height,
-                                      Configuration.Width, Configuration.Height));
+                        new Rectangle(_snake[i].X * _configuration.Width,
+                                      _snake[i].Y * _configuration.Height,
+                                      _configuration.Width, _configuration.Height));
                     }
                     else
                     {
                         snakeColour = Brushes.Turquoise;
 
                         canvas.FillRectangle(snakeColour,
-                         new Rectangle(Snake[i].X * Configuration.Width,
-                                       Snake[i].Y * Configuration.Height,
-                                       Configuration.Width - 2, Configuration.Height - 2));
+                         new Rectangle(_snake[i].X * _configuration.Width,
+                                       _snake[i].Y * _configuration.Height,
+                                       _configuration.Width - 2, _configuration.Height - 2));
                     }
 
                     canvas.FillRectangle(Brushes.DeepPink,
-                        new Rectangle(food.X * Configuration.Width,
-                        food.Y * Configuration.Height, Configuration.Width, Configuration.Height));
+                        new Rectangle(_food.X * _configuration.Width,
+                        _food.Y * _configuration.Height, _configuration.Width, _configuration.Height));
                 }
             }
         }
@@ -283,13 +125,172 @@ namespace WFSnake.Controllers
 
         public void SetSpeed(int speed)
         {
-            Configuration.Speed = speed;
-            _gameForm.GameTimer.Interval = 1000 / Configuration.Speed;
+            _configuration.Speed = speed;
+            _gameForm.GameTimer.Interval = 1000 / _configuration.Speed;
         }
 
         public void SetWallDisabled(bool disabled)
         {
-            Configuration.WallDisabled = disabled;
+            _configuration.WallDisabled = disabled;
         }
+
+        private void _UpdateScreen(object sender, EventArgs e)
+        {
+            if (InputController.KeyPressed(Keys.Enter))
+            {
+                StartGame();
+            }
+            else
+            {
+                if (_configuration.GameOver)
+                {
+                    return;
+                }
+
+                if (InputController.KeyPressed(Keys.Right) && _configuration.Direction != Direction.Left)
+                    _configuration.Direction = Direction.Right;
+                else if (InputController.KeyPressed(Keys.Left) && _configuration.Direction != Direction.Right)
+                    _configuration.Direction = Direction.Left;
+                else if (InputController.KeyPressed(Keys.Up) && _configuration.Direction != Direction.Down)
+                    _configuration.Direction = Direction.Up;
+                else if (InputController.KeyPressed(Keys.Down) && _configuration.Direction != Direction.Up)
+                    _configuration.Direction = Direction.Down;
+
+                _MovePlayer();
+            }
+            _gameForm.CanvasPictureBox.Invalidate();
+        }
+
+        private void _GenerateFood()
+        {
+            int a = 0;
+            int b = 0;
+            int i = 0;
+            bool T;
+            int maxXPos = _gameForm.CanvasPictureBox.Size.Width / _configuration.Width;
+            int maxYPos = _gameForm.CanvasPictureBox.Size.Height / _configuration.Height;
+
+            Random random = new Random();
+            _food = new SnakeBlock();
+
+            do
+            {
+                T = false;
+                a = random.Next(0, maxXPos);
+                b = random.Next(0, maxYPos);
+
+                for (i = 0; i < _snake.Count; i++)
+                {
+                    if (a == _snake[i].X && b == _snake[i].Y)
+                    {
+                        T = true;
+                        break;
+                    }
+                }
+            } while (T);
+
+            _food.X = a;
+            _food.Y = b;
+        }
+
+        private void _MovePlayer()
+        {
+            for (int i = _snake.Count - 1; i >= 0; i--)
+            {
+                if (i == 0)
+                {
+                    switch (_configuration.Direction)
+                    {
+                        case Direction.Right:
+                            _snake[i].X++;
+                            break;
+                        case Direction.Left:
+                            _snake[i].X--;
+                            break;
+                        case Direction.Up:
+                            _snake[i].Y--;
+                            break;
+                        case Direction.Down:
+                            _snake[i].Y++;
+                            break;
+                    }
+
+                    int maxXPos = _gameForm.CanvasPictureBox.Size.Width / _configuration.Width;
+                    int maxYPos = _gameForm.CanvasPictureBox.Size.Height / _configuration.Height;
+
+                    // Granice
+                    if (!_configuration.WallDisabled)
+                    {
+                        if (_snake[i].X < 0 || _snake[i].Y < 0 || _snake[i].X > maxXPos || _snake[i].Y > maxYPos)
+                        {
+                            _Die();
+                        }
+                    }
+                    else
+                    {
+                        if (_snake[i].X < 0)
+                        {
+                            _snake[i].X = maxXPos;
+                        }
+                        else if (_snake[i].Y < 0)
+                        {
+                            _snake[i].Y = maxYPos;
+                        }
+                        else if (_snake[i].X >= maxXPos)
+                        {
+                            _snake[i].X = 0;
+                        }
+                        else if (_snake[i].Y >= maxYPos)
+                        {
+                            _snake[i].Y = 0;
+                        }
+                    }
+
+                    // Sama sa sobom
+                    for (int j = 1; j < _snake.Count; j++)
+                    {
+                        if (_snake[i].X == _snake[j].X && _snake[i].Y == _snake[j].Y)
+                        {
+                            _Die();
+                        }
+                    }
+
+                    // Ji spizu
+                    if (_snake[0].X == _food.X && _snake[0].Y == _food.Y)
+                    {
+                        _Eat();
+                    }
+
+                }
+                else
+                {
+                    _snake[i].X = _snake[i - 1].X;
+                    _snake[i].Y = _snake[i - 1].Y;
+                }
+            }
+        }
+
+        private void _Eat()
+        {
+            SnakeBlock food = new SnakeBlock();
+            food.X = _snake[_snake.Count - 1].X;
+            food.Y = _snake[_snake.Count - 1].Y;
+
+            _snake.Add(food);
+
+            _configuration.Score += _configuration.Points;
+            _gameForm.ScoreLabel.Text = _configuration.Score.ToString();
+
+            _GenerateFood();
+        }
+
+        private void _Die()
+        {
+            _configuration.GameOver = true;
+
+            MessageBox.Show("Gotova igra \nTvoj rezultat je: " + _configuration.Score + "\nPritisni dvaput ENTER za ponovo poceti.", "Probajte ponovo");
+        }
+
+
     }
 }
