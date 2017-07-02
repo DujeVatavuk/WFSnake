@@ -17,7 +17,10 @@ namespace WFSnake.Models
         public Direction Direction { get; set; }
         public bool WallDisabled { get; set; }
 
-        public Configuration()
+        public int MaxXPos { get; set; }
+        public int MaxYPos { get; set; }
+
+        public Configuration(int canvasWidth, int canvasHeight)
         {
             Width = 20;
             Height = 20;
@@ -27,6 +30,17 @@ namespace WFSnake.Models
             GameOver = false;
             Direction = Direction.Down;
             WallDisabled = true;
+
+            MaxXPos = canvasWidth / Width;
+            MaxYPos = canvasHeight / Height;
+        }
+
+        public void NewGameConfiguration()
+        {
+            Score = 0;
+            Points = 100;
+            GameOver = false;
+            Direction = Direction.Down;
         }
     }
 }

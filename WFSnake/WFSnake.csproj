@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WFSnake</RootNamespace>
     <AssemblyName>WFSnake</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\DrawController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\InputController.cs" />
     <Compile Include="GameForm.cs">
@@ -56,10 +57,12 @@
     <Compile Include="GameForm.Designer.cs">
       <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\BuildingBlock.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\Direction.cs" />
+    <Compile Include="Models\Food.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\SnakeBlock.cs" />
+    <Compile Include="Models\Snake.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GameForm.resx">
@@ -73,6 +76,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

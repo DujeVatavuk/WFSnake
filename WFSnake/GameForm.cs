@@ -47,13 +47,18 @@ namespace WFSnake
 
         private void CanvasPictureBox_Paint(object sender, PaintEventArgs e)
         {
-            GameController.DrawSnake(e.Graphics);
+            GameController.DrawAll(e.Graphics);
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (GameController.KeyCheck(keyData))
             {
+                if (InputController.KeyPressed(Keys.Enter))
+                {
+                    GameController.StartGame();
+                }
+
                 return true;
             }
             else

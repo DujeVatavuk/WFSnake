@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace WFSnake.Models
 {
-    class SnakeBlock
+    public class BuildingBlock
     {
         public int X { get; set; }
         public int Y { get; set; }
 
-        public SnakeBlock()
+        public BuildingBlock()
         {
             X = 0;
             Y = 0;
