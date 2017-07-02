@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WFSnake.Models
 {
+    [Serializable]
     public class Player
     {
         public int Rank { get; set; }

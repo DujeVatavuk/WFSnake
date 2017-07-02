@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WFSnake.Models
 {
+    [Serializable]
     public class Leaderboard
     {
         public List<Player> Players;
@@ -40,13 +41,15 @@ namespace WFSnake.Models
 
         public List<Player> GetLeaderboard()
         {
-            return Players.OrderByDescending(p => p.Score)
+            Players = Players.OrderByDescending(p => p.Score)
                 //.ThenBy(p => p.Rank)
                 .Select((p, i) => new Player {
                     Rank = (i + 1),
                     Nick = p.Nick,
                     Score = p.Score })
                 .ToList();
+
+            return Players;
         }
     }
 }
