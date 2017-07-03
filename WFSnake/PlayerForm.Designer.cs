@@ -88,7 +88,7 @@
             this.Controls.Add(this.NickTextBox);
             this.Controls.Add(this.NickLabel);
             this.Name = "PlayerForm";
-            this.Text = "PlayerForm";
+            this.Text = "Odaberite nick";
             this.Shown += new System.EventHandler(this.PlayerForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.LeaderboardDataGridView)).EndInit();
             this.ResumeLayout(false);

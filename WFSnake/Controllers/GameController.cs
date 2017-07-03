@@ -135,7 +135,7 @@ namespace WFSnake.Controllers
             if (_configuration.GameOver)
             {
                 _leaderboardController.AddScore(_configuration.Score);
-                MessageBox.Show(string.Format("Gotova igra \nTvoj rezultat je: {0}\nPritisni dvaput ENTER za ponovo poćeti.", _configuration.Score), "Probajte ponovo");
+                MessageBox.Show(string.Format("Gotova igra \nTvoj rezultat je: {0}\nPritisni ENTER ili OK botun za ponovo poćeti.", _configuration.Score), "Probajte ponovo");
                 StartGame();
             }
 

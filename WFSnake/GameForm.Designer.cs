@@ -175,7 +175,7 @@
             // 
             this.NickLabel.AutoSize = true;
             this.NickLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.NickLabel.Location = new System.Drawing.Point(787, 86);
+            this.NickLabel.Location = new System.Drawing.Point(787, 173);
             this.NickLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NickLabel.Name = "NickLabel";
             this.NickLabel.Size = new System.Drawing.Size(0, 46);
@@ -185,7 +185,7 @@
             // 
             this.PlayerLabel.AutoSize = true;
             this.PlayerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.PlayerLabel.Location = new System.Drawing.Point(589, 86);
+            this.PlayerLabel.Location = new System.Drawing.Point(589, 173);
             this.PlayerLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayerLabel.Name = "PlayerLabel";
             this.PlayerLabel.Size = new System.Drawing.Size(119, 46);
